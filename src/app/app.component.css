@@ -3,17 +3,17 @@
   top: 0px;
   right: 0px;
   left: 0px;
-  height: 50px;
-  background-color: rgb(60, 60, 60);
+  height: 30px;
+  background-color: rgb(30, 30, 30);
 }
 
 .main-pic {
-  margin-top: 50px;
+  margin-top: 30px;
   background: linear-gradient(
-                     rgba(20,20,20, .7),
-                     rgba(20,20,20, .7)),
+                     rgba(40,40,40, .4),
+                     rgba(40,40,40, .4)),
                      url('/assets/jonlandscape.jpeg');
-  height: 400px;
+  height: 450px;
   background-size: cover;
   width: 100%;
   display: flex;
@@ -21,7 +21,7 @@
 }
 
 .veil {
-  margin-top: 225px;
+  margin-top: 275px;
   display: relative;
   width: 100%;
   text-align: center;
@@ -32,11 +32,48 @@
   font-style: normal;
   letter-spacing: .02em;
   text-transform: uppercase;
-  min-width: 765px;
+  min-width: 865px;
 }
 
-.frame {
-  display: block;
-  margin: auto;
-  margin-top: 25px;
+.veil h1 {
+  font-size: 2.5em;
+}
+
+.veil p {
+  text-transform: none;
+}
+
+
+.title {
+  font-size: .5em;
+  margin-top: 30px;
+  color: rgb (110,110, 110);
+  text-align: center;
+  text-transform: none;
+}
+
+.selected {
+  color: rgb(20,20, 20);
+  border-bottom: none;
+  border-bottom: 5px solid rgb(195, 40, 40);
+}
+
+.title:hover {
+  cursor: pointer;
+  color: rgb(20,20, 20);
+}
+ul {
+    float: right;
+    color: white;
+    list-style: none;
+    margin-top: 8px;
+}
+li {
+  display: inline;
+  margin-right: 15px;
+  text-transform: none;
+}
+
+.selected-menu-item {
+  border-bottom: 5px solid rgb(195, 40, 40);
 }
