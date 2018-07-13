@@ -1,9 +1,25 @@
-.frame {
-  display: block;
-  margin: auto;
-  margin-top: 25px;
+
+
+.title {
+  font-size: .5em;
+  margin-top: 30px;
+  color: rgb (110,110, 110);
+  text-align: center;
+  text-transform: none;
 }
 
-.iframe-container {
-  min-width: 865px;
+.selected {
+  color: rgb(20,20, 20);
+  border-bottom: none;
+  border-bottom: 5px solid rgb(195, 40, 40);
+}
+
+.title:hover {
+  cursor: pointer;
+  color: rgb(20,20, 20);
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
