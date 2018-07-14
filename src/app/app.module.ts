@@ -20,7 +20,7 @@ import { PlayerComponent } from './music/player/player.component';
         {path: 'advertising', component: PlayerComponent, data: { data: 'advertising'}}
     ] },
       { path: '**', redirectTo: 'music' }
-    ])
+    ], {useHash: true})
   ],
   providers: [],
   bootstrap: [AppComponent]
