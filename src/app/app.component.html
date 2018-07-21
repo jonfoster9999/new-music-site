@@ -1,10 +1,11 @@
 <div class="header">
   <ul class="nav">
-    <li>About</li>
-    <li class="selected-menu-item">Music</li>
+    <li [routerLink]="'about'" routerLinkActive="selected-menu-item">About</li>
+    <li [routerLink]="'music'" routerLinkActive="selected-menu-item">Music</li>
+    <li [routerLink]="'videos'" routerLinkActive="selected-menu-item">Videos</li>
     <li>Credits</li>
-    <li>Press</li>
-    <li>Contact</li>
+    <li [routerLink]="'press'" routerLinkActive="selected-menu-item">Press</li>
+    <li [routerLink]="'contact'" routerLinkActive="selected-menu-item">Contact</li>
   </ul>
 </div>
 <div class="main-pic">
@@ -15,4 +16,4 @@
     </div>
   </div>
 </div>
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>

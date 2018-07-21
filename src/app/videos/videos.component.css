@@ -1,0 +1,48 @@
+
+
+
+p {
+  text-align: center;
+}
+
+
+.grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-areas: "one one two two";
+  grid-template-rows: auto;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+}
+.one {
+  grid-area: one;
+}
+.two {
+  grid-area: two;
+}
+.grid > div {
+  border: 1px solid rgba(100, 100, 100, 0.6);
+  background-color: rgba(100, 100, 100, 0.3);
+  position: relative;
+  height: 0;
+  padding-top: 56.25%;
+  overflow: hidden;
+}
+iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/*.caption {*/
+  /*position: absolute;*/
+  /*bottom: 0;*/
+  /*color: black;*/
+  /*text-align: center;*/
+  /*font-size: 3vw;*/
+  /*line-height: 3vw;*/
+  /*margin: 0;*/
+  /*width: 100%;*/
+/*}*/

@@ -1,0 +1,51 @@
+
+
+<!--<form #emailForm="ngForm" (ngSubmit)="onSubmit(emailForm)">-->
+  <!--<label for="">Subject</label>-->
+  <!--<input type="text" [(ngModel)]="subject" name="subject"><br>-->
+  <!--<label for="">Body</label>-->
+  <!--<textarea [(ngModel)]="body" name="body"></textarea>-->
+  <!--<br>-->
+  <!--<input type="submit">-->
+<!--</form>-->
+
+<div class="container">
+  <div class="sk-circle" *ngIf="showSpinner">
+    <div class="sk-circle1 sk-child"></div>
+    <div class="sk-circle2 sk-child"></div>
+    <div class="sk-circle3 sk-child"></div>
+    <div class="sk-circle4 sk-child"></div>
+    <div class="sk-circle5 sk-child"></div>
+    <div class="sk-circle6 sk-child"></div>
+    <div class="sk-circle7 sk-child"></div>
+    <div class="sk-circle8 sk-child"></div>
+    <div class="sk-circle9 sk-child"></div>
+    <div class="sk-circle10 sk-child"></div>
+    <div class="sk-circle11 sk-child"></div>
+    <div class="sk-circle12 sk-child"></div>
+  </div>
+  <form id="contact"
+        *ngIf="!messageSuccessfullySent && !messageError"
+        #emailForm="ngForm"
+        (ngSubmit)="onSubmit(emailForm)">
+    <h3 style="text-align: center; text-transform: lowercase;">Write Me</h3>
+    <fieldset>
+      <input placeholder="Your name" type="text" tabindex="1" required autofocus required [(ngModel)]="name" name="name">
+    </fieldset>
+    <fieldset>
+      <input placeholder="Your Email Address" type="email" tabindex="2" required [(ngModel)]="email" name="email">
+    </fieldset>
+    <fieldset>
+      <textarea placeholder="Type your Message Here...." tabindex="5" required [(ngModel)]="body" name="body"></textarea>
+    </fieldset>
+    <fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+    </fieldset>
+  </form>
+  <div *ngIf="messageSuccessfullySent" class="successDiv">
+    Message successfully sent
+  </div>
+  <div *ngIf="messageError" class="errorDiv">
+   Error sending message. Please email snowdaymail@yahoo.com directly.
+  </div>
+</div>
