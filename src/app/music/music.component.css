@@ -1,17 +1,16 @@
 
 
 .title {
-  font-size: .5em;
+  font-size: .7em;
   margin-top: 30px;
-  color: rgb (110,110, 110);
+  color: white;
   text-align: center;
   text-transform: none;
 }
 
 .selected {
-  color: rgb(20,20, 20);
   border-bottom: none;
-  border-bottom: 5px solid rgb(195, 40, 40);
+  border-bottom: 7px solid rgb(195, 40, 40);
 }
 
 .title:hover {
@@ -20,6 +19,21 @@
 }
 
 a {
+  color: white;
   text-decoration: none;
-  color: black;
+  font-weight: 400;
+}
+
+
+.music-selector {
+  margin-top: 0px;
+  background: linear-gradient(#000, black, #222, #eee, #fff);
+  height: 48px;
+}
+
+.title {
+  margin-top: 0px;
+}
+.controls {
+  padding-top: 7px;
 }

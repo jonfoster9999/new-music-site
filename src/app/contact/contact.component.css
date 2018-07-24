@@ -161,9 +161,8 @@ h3 {
 #contact input[type="text"], #contact input[type="email"], #contact input[type="tel"], #contact input[type="url"], #contact textarea, #contact button[type="submit"] { font:400 12px/16px "Open Sans", Helvetica, Arial, sans-serif; }
 
 #contact {
-  background:#F9F9F9;
   padding:25px;
-  margin:50px 0;
+  margin:40px 0;
 }
 
 #contact h3 {
@@ -248,14 +247,27 @@ fieldset {
 .successDiv {
   height: 300px;
   width: 403px;
-  background-color: lightgreen;
+  /*background-color: lightgreen;*/
   color: white;
   margin: 50px auto;
   border-radius: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-size: 1.4em;
+  text-align: center;
+}
+
+
+.successDiv p {
+  text-align: center;
+  text-transform: none;
+  color: black;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.keyboard {
+  width: 40%;
+  display: block;
+  margin: auto;
 }
 
 .errorDiv {
@@ -271,4 +283,9 @@ fieldset {
   font-size: 1.4em;
 
   line-height: 1.4em;
+}
+
+.go-back {
+  font-size: 14px;
+  color: black;
 }

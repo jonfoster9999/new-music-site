@@ -10,6 +10,7 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from "@angular/common/http";
+import { CreditsComponent } from './credits/credits.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {HttpClientModule} from "@angular/common/http";
     VideosComponent,
     PressComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    CreditsComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +37,7 @@ import {HttpClientModule} from "@angular/common/http";
       { path: 'press', component: PressComponent },
       { path: 'about', component: AboutComponent },
       { path: 'contact', component: ContactComponent },
+      { path: 'credits', component: CreditsComponent },
       { path: '**', redirectTo: 'music' }
     ], {useHash: true})
   ],

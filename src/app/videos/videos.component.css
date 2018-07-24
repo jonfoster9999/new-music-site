@@ -36,6 +36,26 @@ iframe {
   height: 100%;
 }
 
+.grid > div.description {
+  background-color: lightgreen;
+  border-radius: 5px;
+  border: none;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  color: white;
+}
+
+.grid > div.description h3 {
+  position: absolute;
+  color: white;
+  top: 0;
+  margin: 0px;
+  font-size: 8vw;
+  line-height: 5vw;
+}
+
 /*.caption {*/
   /*position: absolute;*/
   /*bottom: 0;*/

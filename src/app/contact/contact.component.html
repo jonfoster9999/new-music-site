@@ -28,7 +28,23 @@
         *ngIf="!messageSuccessfullySent && !messageError"
         #emailForm="ngForm"
         (ngSubmit)="onSubmit(emailForm)">
-    <h3 style="text-align: center; text-transform: lowercase;">Write Me</h3>
+    <h3 style="text-align: center;">
+      <img src="../../assets/guitar2.png" height=40px   alt="">
+
+      <!--<img src="../../assets/email.png" height=40px   alt="">-->
+
+      <img src="../../assets/computer.png" height=40px  style="transform: scaleX(-1);" alt="" >
+
+      <img src="../../assets/heart.png" height=40px  alt="" style="display: inline-block;">
+
+      <img src="../../assets/computer.png" height=40px alt="" >
+
+      <!--<img src="../../assets/email.png" height=40px   alt="">-->
+      <img src="../../assets/guitar2.png" height=40px style="transform: scaleX(-1);" alt="">
+
+
+
+    </h3>
     <fieldset>
       <input placeholder="Your name" type="text" tabindex="1" required autofocus required [(ngModel)]="name" name="name">
     </fieldset>
@@ -43,7 +59,9 @@
     </fieldset>
   </form>
   <div *ngIf="messageSuccessfullySent" class="successDiv">
-    Message successfully sent
+    <img class="keyboard" src="../../assets/success.png" alt="">
+    <p>Message successfully sent!</p>
+    <a href="#" [routerLink]="''" class="go-back">Keep Listening</a>
   </div>
   <div *ngIf="messageError" class="errorDiv">
    Error sending message. Please email snowdaymail@yahoo.com directly.
