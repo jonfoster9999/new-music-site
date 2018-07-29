@@ -11,6 +11,7 @@ import { ContactComponent } from './contact/contact.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from "@angular/common/http";
 import { CreditsComponent } from './credits/credits.component';
+import { AngularFontAwesomeModule} from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { CreditsComponent } from './credits/credits.component';
   imports: [
     BrowserModule,
     FormsModule,
+    AngularFontAwesomeModule,
     HttpClientModule,
     RouterModule.forRoot([
       { path: 'music', component: MusicComponent, children: [

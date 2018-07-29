@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body {
+html:not(i), body:not(i) {
   padding: 0px;
   margin: 0px;
   font-family: "proxima-nova",sans-serif;

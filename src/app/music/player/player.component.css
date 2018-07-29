@@ -1,5 +1,17 @@
 .frame {
   display: block;
   margin: auto;
-  margin-top: 25px;
+}
+
+.center-p {
+  text-align: center;
+  background: gray;
+  color: white;
+  height: 40px;
+  line-height: 40px;
+  margin-top: 0px;
+}
+
+.iframe-container {
+  margin-top: 20px;
 }

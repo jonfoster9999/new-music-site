@@ -1,0 +1,93 @@
+:host {
+  background: rgba(72, 116, 172, .8);
+
+}
+
+.press-clipping {
+  display: block;
+  width: 90%;
+
+  box-shadow: 10px 10px 10px black;
+  margin: 4vh auto;
+  padding: 40px 60px;
+  text-transform: none;
+  background-color: white;
+  background: linear-gradient(
+    rgba(40,40,40, .7),
+    rgba(40,40,40, .7)),
+  url('https://assets.saatchiart.com/saatchi/751929/art/2481137/1551138-7.jpg');
+  color: #fef;
+  box-sizing: border-box;
+  transition: .3s ease-in-out;
+}
+
+.image-container {
+  display: inline-block;
+  height: 160px;
+  vertical-align: middle;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.text {
+  display: inline-block;
+  vertical-align: middle;
+  width: calc(100% - 220px);
+  margin-left: 20px;
+}
+
+.image-container img {
+  height: 100%;
+}
+
+.second {
+  color: black;
+  background: linear-gradient(
+    rgba(255, 200, 200, .9),
+    rgba(255, 200, 20, .9)),
+  url('http://bgfons.com/uploads/newspaper/newspaper_texture2847.jpg');
+}
+
+.third {
+  color: black;
+  background: linear-gradient(
+    rgba(37, 72, 176, .9),
+    rgba(37, 72, 176, .9)),
+  url('http://bgfons.com/uploads/newspaper/newspaper_texture2847.jpg');
+}
+
+
+
+.quote {
+  text-align: center;
+  color: #ddd;
+}
+
+.quote-second {
+  color: black;
+}
+
+.from {
+  text-align: center;
+}
+
+.container {
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: gold;
+}
+
+/*@media only screen and (max-width: 600px) {*/
+  /*.press-clipping {*/
+    /*width: 100%;*/
+  /*}*/
+/*}*/
+
+/*a {*/
+  /*color: white;*/
+/*}*/

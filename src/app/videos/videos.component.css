@@ -37,7 +37,11 @@ iframe {
 }
 
 .grid > div.description {
-  background-color: lightgreen;
+  background: linear-gradient(45deg,green, lightgreen);
+  /*background: rgba(21, 121, 21, .5) url('https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/10599631_827396027296311_1701181476727152440_n.jpg?_nc_cat=0&oh=08219b5473be37950b5c218620318ba8&oe=5BD56794');*/
+  background-position: 0% 30%;
+  /*background-color: ;*/
+  opacity: .7;
   border-radius: 5px;
   border: none;
   font-size: 40px;
@@ -47,14 +51,33 @@ iframe {
   color: white;
 }
 
+.grid > div.description:nth-child(1) {
+  /*background: rgba(21, 121, 21, .5) url('https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/10384341_818373231995_1523478722064955081_n.jpg?_nc_cat=0&oh=d9fcf0556439396069b3b426306ea7b5&oe=5BD5F3DC');*/
+
+}
+
 .grid > div.description h3 {
   position: absolute;
   color: white;
   top: 0;
   margin: 0px;
-  font-size: 8vw;
+  padding-top: 10px;
+  padding-left: 10px;
+  font-size: 7vw;
   line-height: 5vw;
 }
+
+.brand {
+  color: white;
+}
+
+.demo {
+  /*visibility: hidden;*/
+  margin-top: -5px;
+  font-size: 5vw;
+  text-transform: none;
+}
+
 
 /*.caption {*/
   /*position: absolute;*/
@@ -66,3 +89,5 @@ iframe {
   /*margin: 0;*/
   /*width: 100%;*/
 /*}*/
+
+
