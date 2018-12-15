@@ -1,0 +1,15 @@
+sudo: required
+
+services:
+  - docker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "never-ending-tape"
+  env: "NeverEndingTape-env"
+  bucket_name: "elasticbeanstalk-us-east-1-997201347558"
+  bucket_path: "never-ending-tape"
+  on:
+    branch: master
+    
