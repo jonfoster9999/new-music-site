@@ -3,6 +3,9 @@ sudo: required
 services:
   - docker
 
+script:
+  - docker ps
+
 deploy:
   provider: elasticbeanstalk
   region: "us-east-1"
@@ -12,4 +15,3 @@ deploy:
   bucket_path: "never-ending-tape"
   on:
     branch: master
-    
