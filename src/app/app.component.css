@@ -6,14 +6,17 @@
   height: 30px;
   background-color: rgb(30, 30, 30);
   z-index:2;
+
 }
 
 .main-pic {
   margin-top: 30px;
   background: linear-gradient(
-                     rgba(40,40,40, .4),
-                     rgba(40,40,40, .4)),
-                     url('/assets/jonlandscape.jpeg');
+                     rgba(72,55,120, .3),
+                     rgba(72,55,120, .5),
+                     rgba(72,55,120, .4),
+                    rgba(72,55,120, .3)),
+                     url('/assets/studio.jpg');
   background-size: cover;
   width: 100%;
   height: 20px;
@@ -36,18 +39,18 @@
   font-style: normal;
   letter-spacing: .02em;
   text-transform: uppercase;
-  padding-top: 35%;
 }
 
 .veil h1 {
   font-size: 4.5vw;
   line-height: 4.5vw;
   margin: 0;
+  margin-bottom: 15px
 }
 
 .veil p {
   margin: 0;
-  margin-top: 10px;
+  margin-top: 20px;
   text-transform: none;
   line-height: 2.7vw;
   font-size: 2.7vw;
@@ -77,6 +80,8 @@ li:focus {
 
 .info{
   /*height: 200px;*/
+  padding-top: 19%;
+  /* display: none; */
 }
 
 .router-outlet {
@@ -86,9 +91,16 @@ li:focus {
   background: rgba(72, 116, 172, .8);
 }
 
+.site-container {
+  margin: auto;
+  max-width: 1200px;
+  height: 100%;
+}
+
 @media only screen and (max-width: 600px) {
   ul {
-    float: none;
+    float: right;
+    width: 100%;
     text-align: center;
     font-size: .8em;
     margin-left: -40px;
@@ -102,6 +114,38 @@ li:focus {
   li {
     margin: 0 8px;
   }
+  .header {
+    /* height: 27px; */
+    /* border-bottom: 1px solid white; */
+  }
+
+  .title {
+    display: none;
+  }
 }
 
+.artist-name {
+  text-align: center;
+  margin-bottom: 20px;
+}
 
+.my-name {
+  padding: 8px;
+  border-radius: 5px;
+  /* color: white; */
+  font-weight: bold;
+  font-size: 1.1em;
+  /* color: rgba(72,55,120, 1); */
+  font-style: cursive;
+  /* background-color: rgba(215,215,235, .9); */
+  /* box-shadow: 2px 2px 133px rgba(145,92,182, .9);; */
+}
+
+.tape-pic {
+  width: 30%;
+  margin-bottom: 10px;
+}
+
+.li-title {
+  margin-left: -25px;
+}

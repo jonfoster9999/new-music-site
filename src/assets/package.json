@@ -1,0 +1,16 @@
+{
+  "name": "emergency-messaging-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.213.1",
+    "easyxml": "^2.0.1",
+    "jsftp": "^2.1.3"
+  }
+}

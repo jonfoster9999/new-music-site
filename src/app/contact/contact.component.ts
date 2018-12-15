@@ -1,22 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewChecked, Component, OnInit} from '@angular/core';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {ActivatedRoute} from '@angular/router';
+
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css']
 })
-export class ContactComponent implements OnInit {
-
+export class ContactComponent implements OnInit, AfterViewChecked {
+  fragment: string;
   email: string;
   body: string;
   name: string;
   messageSuccessfullySent = false;
   messageError = false;
   showSpinner = false;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.fragment.subscribe(fragment => { this.fragment = fragment; });
   }
 
   onSubmit(form) {
@@ -32,6 +35,14 @@ export class ContactComponent implements OnInit {
           this.messageError = true;
         }
       });
+  }
+
+  ngAfterViewChecked(): void {
+    try {
+      if(this.fragment) {
+        document.querySelector('#' + this.fragment).scrollIntoView();
+      }
+    } catch (e) { }
   }
 
 }

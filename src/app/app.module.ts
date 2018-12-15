@@ -12,6 +12,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from "@angular/common/http";
 import { CreditsComponent } from './credits/credits.component';
 import { AngularFontAwesomeModule} from 'angular-font-awesome';
+import { WorkComponent } from './work/work.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AngularFontAwesomeModule} from 'angular-font-awesome';
     PressComponent,
     AboutComponent,
     ContactComponent,
-    CreditsComponent
+    CreditsComponent,
+    WorkComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +41,7 @@ import { AngularFontAwesomeModule} from 'angular-font-awesome';
       { path: 'press', component: PressComponent },
       { path: 'about', component: AboutComponent },
       { path: 'contact', component: ContactComponent },
+      { path: 'work', component: WorkComponent},
       { path: 'credits', component: CreditsComponent },
       { path: '**', redirectTo: 'music' }
     ], {useHash: true})

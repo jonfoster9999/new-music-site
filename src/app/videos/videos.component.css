@@ -78,6 +78,10 @@ iframe {
   text-transform: none;
 }
 
+.demo-smaller {
+  font-size: 4vw;
+}
+
 
 /*.caption {*/
   /*position: absolute;*/
