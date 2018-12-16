@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {AfterViewChecked, Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+
 
 @Component({
   selector: 'app-root',
