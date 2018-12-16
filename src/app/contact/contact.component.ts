@@ -27,14 +27,21 @@ export class ContactComponent implements OnInit, AfterViewChecked {
     this.http.post('https://ttx2837v69.execute-api.us-east-1.amazonaws.com/dev/email', form.value, {responseType: 'text'})
       .subscribe(res => {
         const resp = JSON.parse(res);
-        console.log(resp);
         this.showSpinner = false;
         if (resp.message === 'successful') {
           this.messageSuccessfullySent = true;
         } else {
+          console.log('nope')
+          this.showSpinner = false;
           this.messageError = true;
         }
-      });
+      },
+      err => {
+        this.showSpinner = false;
+        this.messageError = true;
+      }
+    )
+      ;
   }
 
   ngAfterViewChecked(): void {
