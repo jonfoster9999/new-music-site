@@ -19,7 +19,7 @@ export class AboutComponent implements OnInit, AfterViewChecked {
   ngAfterViewChecked(): void {
     try {
       if(this.fragment) {
-        document.querySelector('#' + this.fragment).scrollIntoView();
+        window.scrollTo(0, 790);
       }
     } catch (e) { }
   }
