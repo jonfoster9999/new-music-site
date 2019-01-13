@@ -7,6 +7,13 @@
   margin-bottom: 0px;
 }
 
+.email {
+  text-align: center;
+  color: #333;
+  padding-top: 0px;
+  margin-top: -60px;
+}
+
 .sk-circle {
   margin: 100px auto;
   width: 40px;

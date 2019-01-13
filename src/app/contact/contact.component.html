@@ -58,12 +58,13 @@
       <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
     </fieldset>
   </form>
+  <div class="email">info@neverendingtape.com</div>
   <div *ngIf="messageSuccessfullySent" class="successDiv">
     <img class="keyboard" src="../../assets/success.png" alt="">
     <p>Message successfully sent!</p>
     <a href="#" [routerLink]="''" class="go-back">Keep Listening</a>
   </div>
   <div *ngIf="messageError" class="errorDiv">
-   Error sending message. Please email snowdaymail@yahoo.com directly.
+   Error sending message. Please email info@neverendingtape.com directly.
   </div>
 </div>
