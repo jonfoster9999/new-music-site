@@ -149,3 +149,44 @@ li:focus {
 .li-title {
   margin-left: -25px;
 }
+
+.social-footer {
+  padding: 1rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  background: #333;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.social-footer .social-footer-icons li:last-of-type {
+  margin-right: 0;
+}
+
+.social-footer .social-footer-icons .fa {
+  font-size: 1.3rem;
+  color: #fefefe;
+}
+
+.social-footer .social-footer-icons .fa:hover {
+  color: powderblue;
+  transition: color 0.3s ease-in;
+}
+
+.social-footer-icons ul {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.footer-email {
+  color: white;
+  font-size: .7rem;
+  text-transform: none;
+}
