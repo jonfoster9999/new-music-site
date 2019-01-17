@@ -154,7 +154,7 @@ li:focus {
   padding: 1rem;
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
-  background: #333;
+  background-color: rgb(30, 30, 30);
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
