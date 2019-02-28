@@ -13,6 +13,8 @@ import {HttpClientModule} from "@angular/common/http";
 import { CreditsComponent } from './credits/credits.component';
 import { AngularFontAwesomeModule} from 'angular-font-awesome';
 import { WorkComponent } from './work/work.component';
+import { AlbumsComponent } from './albums/albums.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -24,18 +26,21 @@ import { WorkComponent } from './work/work.component';
     AboutComponent,
     ContactComponent,
     CreditsComponent,
-    WorkComponent
+    WorkComponent,
+    AlbumsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AngularFontAwesomeModule,
     HttpClientModule,
+    FlexLayoutModule,
     RouterModule.forRoot([
       { path: 'music', component: MusicComponent, children: [
         {path: '', redirectTo: 'fullsongs', pathMatch: 'full'},
         {path: 'fullsongs', component: PlayerComponent, data: { data: 'fullsongs'}},
-        {path: 'advertising', component: PlayerComponent, data: { data: 'advertising'}}
+        {path: 'advertising', component: PlayerComponent, data: { data: 'advertising'}},
+        {path: 'albums', component: AlbumsComponent}
     ] },
       { path: 'videos', component: VideosComponent },
       { path: 'press', component: PressComponent },
