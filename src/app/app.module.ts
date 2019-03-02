@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {RouterModule} from '@angular/router';
+import { RouterModule} from '@angular/router';
 import { AppComponent } from './app.component';
 import { MusicComponent } from './music/music.component';
 import { PlayerComponent } from './music/player/player.component';
@@ -8,13 +8,14 @@ import { VideosComponent } from './videos/videos.component';
 import { PressComponent } from './press/press.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
-import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from "@angular/common/http";
+import { FormsModule} from '@angular/forms';
+import { HttpClientModule} from "@angular/common/http";
 import { CreditsComponent } from './credits/credits.component';
 import { AngularFontAwesomeModule} from 'angular-font-awesome';
 import { WorkComponent } from './work/work.component';
 import { AlbumsComponent } from './albums/albums.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AlbumsService } from './albums.service';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
       { path: '**', redirectTo: 'music' }
     ], {useHash: true})
   ],
-  providers: [],
+  providers: [
+    AlbumsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
