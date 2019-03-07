@@ -1,10 +1,61 @@
-<main class="grid">
-  <article *ngFor="let album of albums">
+<div style="position: relative;">
+
+
+<div class="campaign-background-overlay"
+     [class.visible]="showBackgroundOverlay">
+</div>
+
+<div class="no-match" *ngIf="loadingAlbums">
+  LOADING ALBUMS!!!!
+</div>
+
+
+<ng-select *ngIf="!loadingAlbums" [@slideInOut]="animationState" class="animated-div custom-select"
+      id="thing"
+      style="box-shadow: none; outline: 0;"
+      [items]="tagNames"
+      [multiple]="true"
+      [closeOnSelect]="true"
+      [searchable]="false"
+      bindLabel="name"
+      placeholder="Filter Albums By Tags"
+      (change)="filterByTags(el)"
+      (clear)="clearSelections()"
+      [(ngModel)]="selectedTags"
+      #el>
+</ng-select>
+
+<div class="bar" *ngIf="!loadingAlbums && selectedTags.length > 0">
+  Note: You are viewing a filtered list. Add or remove filters above.
+</div>
+
+<input id="dumb">
+<!-- <button (click)="toggleShowDiv('divA')">TOGGLE DIV</button> -->
+<main *ngIf="!loadingAlbums && visibleAlbums.length > 0" class="grid">
+  <article *ngFor="let album of visibleAlbums" class="album-article">
     <img [src]="album.cover" alt="Sample photo">
     <div class="text">
-      <h3>{{ album.name }}</h3>
-      <p>{{ album.description }}</p>
-      <button (click)="listen(album)">Listen Now</button>
+      <h3>{{ album.name }}<span></span></h3>
+      <p class="album-description">{{ album.description }}<span></span></p>
+      <p></p>
+        <span *ngFor="let tag of album.tags" class="tag">
+          {{ tag }}
+        </span>
+
+      <p></p>
+      <br>
+      <button (click)="listen(album)" class="listen-button">Listen Now</button>
     </div>
   </article>
 </main>
+
+<div class="no-match" *ngIf="!loadingAlbums && visibleAlbums.length == 0">
+  No albums match this criteria
+</div>
+
+
+<router-outlet name="album"
+  (activate)="albumPopupActivated($event)"
+  (deactivate)="albumPopupDeactivated()">
+</router-outlet>
+</div>

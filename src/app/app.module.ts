@@ -16,6 +16,9 @@ import { WorkComponent } from './work/work.component';
 import { AlbumsComponent } from './albums/albums.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AlbumsService } from './albums.service';
+import { AlbumComponent } from './album/album.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -28,20 +31,25 @@ import { AlbumsService } from './albums.service';
     ContactComponent,
     CreditsComponent,
     WorkComponent,
-    AlbumsComponent
+    AlbumsComponent,
+    AlbumComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     AngularFontAwesomeModule,
     HttpClientModule,
+    NgSelectModule,
     FlexLayoutModule,
     RouterModule.forRoot([
       { path: 'music', component: MusicComponent, children: [
         {path: '', redirectTo: 'fullsongs', pathMatch: 'full'},
         {path: 'fullsongs', component: PlayerComponent, data: { data: 'fullsongs'}},
         {path: 'advertising', component: PlayerComponent, data: { data: 'advertising'}},
-        {path: 'albums', component: AlbumsComponent}
+        {path: 'albums', component: AlbumsComponent, children: [
+            { path: ':albumId', component: AlbumComponent, outlet: 'album' }
+          ]
+        }
     ] },
       { path: 'videos', component: VideosComponent },
       { path: 'press', component: PressComponent },

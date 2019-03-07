@@ -10,11 +10,17 @@ html:not(i), body:not(i) {
   letter-spacing: .02em;
   text-transform: uppercase;
   height:100%;
-
-
   display: flex;
   flex-direction: column;
 
 
 }
 
+*:focus {
+  outline: none !important;
+  /* box-shadow: none !important; */
+}
+
+app-root {
+  background-color: lightgray !important;
+}
