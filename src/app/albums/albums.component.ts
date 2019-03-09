@@ -86,7 +86,7 @@ export class AlbumsComponent implements OnInit {
         })
         this.albumsService.albums = this.albums;
 
-        this.visibleAlbums = [...this.albumsService.albums, ...this.albumsService.albums, ...this.albumsService.albums];
+        this.visibleAlbums = this.albumsService.albums
         this.loadingAlbums = false
       });
     }
@@ -98,7 +98,7 @@ export class AlbumsComponent implements OnInit {
 
   listen(album) {
     this.albumsService.currentAlbum = album
-    this.router.navigate([{ outlets: { album: [album.name]  } }], { relativeTo: this.activatedRoute });
+    this.router.navigate([{ outlets: { album: [album.title]  } }], { relativeTo: this.activatedRoute });
   }
 
   albumPopupActivated(componentRef: AlbumComponent) {

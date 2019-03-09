@@ -3,7 +3,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlbumsService } from '../albums.service';
 import * as amplitudejs from 'amplitudejs';
-
+import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-album',
@@ -38,6 +38,7 @@ export class AlbumComponent implements OnInit {
   loadingAlbum = true;
   tags;
   albums;
+  path: SafeResourceUrl;
 
 
   visibilityTimeout;
@@ -50,29 +51,21 @@ export class AlbumComponent implements OnInit {
   disableLeftScroll = true;
   disableRightScroll = true;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private albumsService: AlbumsService) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private albumsService: AlbumsService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    amplitudejs.init({
-		"songs": [
-			{
-				"name": "Song Name 1",
-				"artist": "Artist Name",
-				"album": "Album Name",
-				"url": "/song/url.mp3",
-				"cover_art_url": "/cover/art/url.jpg"
-			}
-    ]})
     this.visibilityTimeout = window.setTimeout(() => this.isVisible = true);
     let currentAlbum = this.activatedRoute.snapshot.params.albumId;
+    console.log('current album in beginning', currentAlbum)
     if (this.albumsService.albums && this.albumsService.tags) {
-      this.loadingAlbum = false;
-      this.currentAlbum = this.albumsService.albums.find(album => album.name == currentAlbum);
+      this.currentAlbum = this.albumsService.albums.find(album => album.title == currentAlbum);
       this.tags = this.albumsService.tags;
+      this.path = this.currentAlbum.path.replace("/", "");
+      this.loadingAlbum = false;
       console.log('current album', this.currentAlbum)
     } else {
       this.albumsService.getAlbums().subscribe(payload => {
-        this.loadingAlbum = false;
+
         this.albums = payload['albums'];
         this.tags = payload['tags'];
         this.albumsService.tags = payload['tags'];
@@ -81,7 +74,9 @@ export class AlbumComponent implements OnInit {
           album.tags = album.tags.map(tag => this.decodeTag(tag))
         })
         this.albumsService.albums = this.albums;
-        this.currentAlbum = this.albumsService.albums.find(album => album.name == currentAlbum);
+        this.currentAlbum = this.albumsService.albums.find(album => album.title == currentAlbum);
+        this.path = this.currentAlbum.path.replace("/", "");
+        this.loadingAlbum = false;
         console.log('current album', this.currentAlbum)
       })
     }
@@ -98,6 +93,11 @@ export class AlbumComponent implements OnInit {
 
   navigateBackToList() {
     this.router.navigate(['music', 'albums']);
+  }
+
+  iframeURL() {
+    console.log("the path is", this.path)
+    return this.sanitizer.bypassSecurityTrustResourceUrl(`http://www.net-album-player.com.s3-website-us-east-1.amazonaws.com/?albumPath=${this.path}`)
   }
 
   @HostListener('@isVisibleChanged.done', ['$event'])
