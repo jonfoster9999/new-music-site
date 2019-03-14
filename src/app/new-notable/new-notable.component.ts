@@ -13,5 +13,4 @@ export class NewNotableComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

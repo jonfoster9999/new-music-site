@@ -24,6 +24,6 @@
   </div>
   <div id="parent" *ngIf="!loadingAlbum">
     <div class="iframe">
-      <iframe style="border:none; background: lightslategray" id="album-player" [src]="iframeURL()"></iframe>
+      <iframe style="border:none; background: lightslategray" id="album-player" [src]="url | safe"></iframe>
     </div>
   </div>

@@ -24,6 +24,7 @@ import { AuthComponent } from './auth/auth.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthService } from './auth.service';
 import { MaterialModule } from './material.module';
+import { SafePipe } from './safe.pipe';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { MaterialModule } from './material.module';
     AlbumComponent,
     NewNotableComponent,
     AuthComponent,
-    SignupComponent
+    SignupComponent,
+    SafePipe
   ],
   imports: [
     MaterialModule,

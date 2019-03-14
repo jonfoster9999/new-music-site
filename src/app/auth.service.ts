@@ -14,32 +14,16 @@ export class AuthService {
   }
 
   signupUser(email: string, password: string) {
-    console.log('signup user?');
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-      .catch(
-        error => console.log(error)
-      );
+    return firebase.auth().createUserWithEmailAndPassword(email, password)
+
   }
 
   signinUser(email: string, password: string) {
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(
-        response => {
-          this.router.navigate([{outlets: { auth: null }}])
-          console.log(response);
-          firebase.auth().currentUser.getIdToken()
-            .then(token => {
-              this.token = token;
-            });
-        }
-      )
-      .catch(
-        error => console.log(error)
-      );
+    return firebase.auth().signInWithEmailAndPassword(email, password)
   }
 
   getToken() {
-    firebase.auth().currentUser.getToken()
+    firebase.auth().currentUser.getIdToken()
       .then(token => {
         this.token = token;
       });

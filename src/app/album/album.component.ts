@@ -39,6 +39,7 @@ export class AlbumComponent implements OnInit {
   tags;
   albums;
   path: SafeResourceUrl;
+  url = ''
 
 
   visibilityTimeout;
@@ -60,7 +61,7 @@ export class AlbumComponent implements OnInit {
     if (this.albumsService.albums && this.albumsService.tags) {
       this.currentAlbum = this.albumsService.albums.find(album => album.title == currentAlbum);
       this.tags = this.albumsService.tags;
-      this.path = this.currentAlbum.path.replace('/', '');
+      this.url = "http://www.net-album-player.com.s3-website-us-east-1.amazonaws.com/?albumPath=" + this.currentAlbum.path.replace('/', '');
       this.loadingAlbum = false;
       console.log('current album', this.currentAlbum)
     } else {
@@ -75,7 +76,7 @@ export class AlbumComponent implements OnInit {
         })
         this.albumsService.albums = this.albums;
         this.currentAlbum = this.albumsService.albums.find(album => album.title == currentAlbum);
-        this.path = this.currentAlbum.path.replace('/', '');
+        this.url = "http://www.net-album-player.com.s3-website-us-east-1.amazonaws.com/?albumPath=" + this.currentAlbum.path.replace('/', '');
         this.loadingAlbum = false;
       })
     }

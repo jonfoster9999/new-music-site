@@ -32,12 +32,13 @@
             </mat-form-field>
           </p>
 
-          <!--<p *ngIf="error" class="error">-->
-            <!--{{ error }}-->
-          <!--</p>-->
-          <a (click)="nav()">Signup...</a><br>
-          <a (click)="close()">Close...</a><br>
+          <p *ngIf="error" class="error">
+            {{ error }}
+          </p>
           <div class="button">
+            <a (click)="nav()" class="change-card">Need an account?</a><br>
+            <button (click)="close()" mat-button>Cancel</button>
+
             <button type="submit" mat-button>Login</button>
           </div>
 
