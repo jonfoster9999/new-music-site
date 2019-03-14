@@ -1,0 +1,48 @@
+<div class="auth-overlay">
+    <!--This is the login component<br>-->
+    <!--<a (click)="close()">Close</a>-->
+
+    <!--<form (ngSubmit)="onSignin(f)" (keydown.enter)="$event.preventDefault()" #f="ngForm">-->
+      <!--<div class="form-group">-->
+        <!--<label for="email">Email</label>-->
+        <!--<input type="email" id="email" name="email" ngModel>-->
+      <!--</div>-->
+      <!--<div class="form-group">-->
+        <!--<label for="password">Password</label>-->
+        <!--<input type="password" id="password" name="password" ngModel>-->
+      <!--</div>-->
+      <!--<button type="submit">Sign In</button>-->
+    <!--</form>-->
+
+
+    <mat-card>
+      <mat-card-title>Login</mat-card-title>
+      <mat-card-content>
+        <form (ngSubmit)="onSignin(f)" (keydown.enter)="$event.preventDefault()" #f="ngForm">
+          <p>
+            <mat-form-field>
+              <input type="email" id="email" name="email" ngModel matInput placeholder="Email" >
+            </mat-form-field>
+          </p>
+
+
+          <p>
+            <mat-form-field>
+              <input type="password" id="password" name="password" ngModel  matInput placeholder="Password">
+            </mat-form-field>
+          </p>
+
+          <!--<p *ngIf="error" class="error">-->
+            <!--{{ error }}-->
+          <!--</p>-->
+          <a (click)="nav()">Signup...</a><br>
+          <a (click)="close()">Close...</a><br>
+          <div class="button">
+            <button type="submit" mat-button>Login</button>
+          </div>
+
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+

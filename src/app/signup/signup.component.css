@@ -1,0 +1,49 @@
+
+.auth-overlay {
+  position: fixed;
+  z-index:300;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, .7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.container {
+  width: 60%;
+  height: 400px;
+  background: white;
+}
+
+
+:host {
+  display: flex;
+  justify-content: center;
+}
+
+.mat-form-field {
+  width: 100%;
+  min-width: 300px;
+}
+
+mat-card-title,
+mat-card-content {
+  display: flex;
+  justify-content: center;
+}
+
+.error {
+  padding: 16px;
+  width: 300px;
+  color: white;
+  background-color: red;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+}

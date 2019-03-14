@@ -1,3 +1,6 @@
+<router-outlet name="auth">
+
+</router-outlet>
 <div class="header" id="top">
   <ul class="title" style="float: left;">
     <li class="li-title" [routerLink]="''" fragment="top">Never Ending Tape</li>
@@ -11,6 +14,14 @@
     <!--<li [routerLink]="'press'" routerLinkActive="selected-menu-item">Press</li>-->
     <li [routerLink]="'work'" routerLinkActive="selected-menu-item" fragment="anchor">Latest Work</li>
     <li [routerLink]="'contact'" routerLinkActive="selected-menu-item" fragment="anchor">Contact</li>
+
+    <ng-template [ngIf]="!authService.isAuthenticated()">
+      <li [routerLink]="[{ outlets: { auth: 'login' } }]">Signup/Login</li>
+    </ng-template>
+
+    <ng-template [ngIf]="authService.isAuthenticated()">
+      <li (click)="logout()">Logout</li>
+    </ng-template>
   </ul>
 
 </div>
@@ -26,8 +37,6 @@
   </div>
 </div>
   <router-outlet></router-outlet>
-<br>
-<br>
   <footer class="social-footer">
     <div class="social-footer-left">
       <span class='footer-email'>e: info@neverendingtape.com p: 631-494-8627</span>

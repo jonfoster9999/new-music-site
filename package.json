@@ -23,9 +23,11 @@
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
     "@ng-select/ng-select": "^2.16.0",
+    "@angular/material": "^6.0.3",
     "amplitudejs": "^4.0.0",
     "angular-font-awesome": "^3.1.2",
     "core-js": "^2.5.4",
+    "firebase": "4.8.0",
     "font-awesome": "^4.7.0",
     "rxjs": "6.0.0",
     "zone.js": "^0.8.26"

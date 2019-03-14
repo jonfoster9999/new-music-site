@@ -62,7 +62,7 @@ export class AlbumsComponent implements OnInit {
     private router: Router,
     public activatedRoute: ActivatedRoute
   ) {
-    console.log('activated route', this.activatedRoute)
+    console.log('activated route', this.activatedRoute);
   }
 
   ngOnInit() {

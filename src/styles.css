@@ -1,5 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
-
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 html:not(i), body:not(i) {
   padding: 0px;
   margin: 0px;

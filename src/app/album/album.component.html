@@ -18,13 +18,12 @@
     </div>
   </div> -->
 
-
-    <div id="static" style="background-color: black;" *ngIf="!loadingAlbum">
-      <h1 style="text-align: center; margin-bottom: 0px; color: white; margin-top: 30px;">{{ currentAlbum.title }}</h1>
-      <h4 style="text-align: center; margin-bottom: none; margin-top: 10px; color: #ccc;">{{ currentAlbum.artist }}</h4>
-    </div>
-    <div id="parent" *ngIf="!loadingAlbum">
+  <div id="static" style="background-color: black;" *ngIf="!loadingAlbum">
+    <h1 style="text-align: center; margin-bottom: 0px; color: white; margin-top: 30px;">{{ currentAlbum.title }}</h1>
+    <h4 style="text-align: center; margin-bottom: none; margin-top: 10px; color: #ccc;">{{ currentAlbum.artist }}</h4>
+  </div>
+  <div id="parent" *ngIf="!loadingAlbum">
     <div class="iframe">
       <iframe style="border:none; background: lightslategray" id="album-player" [src]="iframeURL()"></iframe>
     </div>
-    </div>
+  </div>

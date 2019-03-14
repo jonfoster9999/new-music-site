@@ -55,12 +55,12 @@ export class AlbumComponent implements OnInit {
 
   ngOnInit() {
     this.visibilityTimeout = window.setTimeout(() => this.isVisible = true);
-    let currentAlbum = this.activatedRoute.snapshot.params.albumId;
+    const currentAlbum = this.activatedRoute.snapshot.params.albumId;
     console.log('current album in beginning', currentAlbum)
     if (this.albumsService.albums && this.albumsService.tags) {
       this.currentAlbum = this.albumsService.albums.find(album => album.title == currentAlbum);
       this.tags = this.albumsService.tags;
-      this.path = this.currentAlbum.path.replace("/", "");
+      this.path = this.currentAlbum.path.replace('/', '');
       this.loadingAlbum = false;
       console.log('current album', this.currentAlbum)
     } else {
@@ -75,9 +75,8 @@ export class AlbumComponent implements OnInit {
         })
         this.albumsService.albums = this.albums;
         this.currentAlbum = this.albumsService.albums.find(album => album.title == currentAlbum);
-        this.path = this.currentAlbum.path.replace("/", "");
+        this.path = this.currentAlbum.path.replace('/', '');
         this.loadingAlbum = false;
-        console.log('current album', this.currentAlbum)
       })
     }
   }
@@ -96,7 +95,7 @@ export class AlbumComponent implements OnInit {
   }
 
   iframeURL() {
-    console.log("the path is", this.path)
+    console.log('is this running over and over?')
     return this.sanitizer.bypassSecurityTrustResourceUrl(`http://www.net-album-player.com.s3-website-us-east-1.amazonaws.com/?albumPath=${this.path}`)
   }
 
