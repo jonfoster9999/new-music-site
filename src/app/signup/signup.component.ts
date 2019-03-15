@@ -36,7 +36,7 @@ export class SignupComponent implements OnInit {
       .then(response => {
         firebase.auth().currentUser.getIdToken()
           .then(token => {
-            this.authService.currentUser = firebase.auth().currentUser
+            this.authService.currentUser = firebase.auth().currentUser;
             this.authService.token = token;
             this.router.navigate([{outlets: { auth: null }}])
           });
