@@ -16,11 +16,12 @@
     <li [routerLink]="'contact'" routerLinkActive="selected-menu-item" fragment="anchor">Contact</li>
 
     <ng-template [ngIf]="!authService.isAuthenticated()">
-      <li [routerLink]="[{ outlets: { auth: 'login' } }]">Signup/Login</li>
+      <li class="optional-li" [routerLink]="[{ outlets: { auth: 'login' } }]">Signup/Login</li>
     </ng-template>
 
     <ng-template [ngIf]="authService.isAuthenticated()">
-      <li (click)="logout()">Logout</li>
+
+      <li class="optional-li" (click)="logout()" style="color: silver;">{{ authService.currentUser.email }} </li>
     </ng-template>
   </ul>
 

@@ -27,7 +27,7 @@
     "amplitudejs": "^4.0.0",
     "angular-font-awesome": "^3.1.2",
     "core-js": "^2.5.4",
-    "firebase": "^5.9.0",
+    "firebase": "^4.8.0",
     "font-awesome": "^4.7.0",
     "rxjs": "6.0.0",
     "zone.js": "^0.8.26"

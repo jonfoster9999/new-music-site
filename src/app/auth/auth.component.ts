@@ -36,6 +36,7 @@ export class AuthComponent implements OnInit {
           console.log(response);
           firebase.auth().currentUser.getIdToken()
             .then(token => {
+              this.authService.currentUser = firebase.auth().currentUser
               this.authService.token = token;
               this.router.navigate([{outlets: { auth: null }}])
             });
