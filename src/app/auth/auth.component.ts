@@ -12,7 +12,6 @@ export class AuthComponent implements OnInit {
   error = undefined;
 
   constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService) {
-    console.log(this.route.snapshot.url);
   }
 
   ngOnInit() {
@@ -29,17 +28,15 @@ export class AuthComponent implements OnInit {
   onSignin(form: NgForm) {
     const email = form.value.email;
     const password = form.value.password;
-    console.log(email, password);
     this.authService.signinUser(email, password)
       .then(
         response => {
-          console.log(response);
           firebase.auth().currentUser.getIdToken()
             .then(token => {
-              this.authService.currentUser = firebase.auth().currentUser
+              this.authService.currentUser = firebase.auth().currentUser;
               this.authService.token = token;
               this.authService.authChange.next();
-              this.router.navigate([{outlets: { auth: null }}])
+              this.router.navigate([{outlets: { auth: null }}]);
             });
         }
       )

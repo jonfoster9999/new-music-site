@@ -6,7 +6,7 @@
 </div>
 
 <div class="no-match" *ngIf="loadingAlbums">
-  LOADING ALBUMS!!!!
+  Loading Albums...
 </div>
 
 
@@ -38,7 +38,7 @@
       <h3>{{ album.title }} - {{ album.artist }}<span></span></h3>
       <p class="album-description">{{ album.description }}<span></span></p>
       <p></p>
-        <span *ngFor="let tag of album.tags" class="tag">
+        <span (click)="tagWasClicked(el)" *ngFor="let tag of album.tags" class="tag">
           {{ tag }}
         </span>
 

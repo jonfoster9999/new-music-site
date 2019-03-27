@@ -13,7 +13,6 @@ export class SignupComponent implements OnInit {
   error = undefined;
 
   constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService) {
-    console.log(this.route.snapshot.url);
   }
 
   ngOnInit() {
@@ -31,7 +30,6 @@ export class SignupComponent implements OnInit {
   onSignup(form: NgForm) {
     const email = form.value.email;
     const password = form.value.password;
-    console.log(email, password);
     this.authService.signupUser(email, password)
       .then(response => {
         firebase.auth().currentUser.getIdToken()

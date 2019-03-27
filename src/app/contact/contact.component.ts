@@ -31,7 +31,6 @@ export class ContactComponent implements OnInit, AfterViewChecked {
         if (resp.message === 'successful') {
           this.messageSuccessfullySent = true;
         } else {
-          console.log('nope')
           this.showSpinner = false;
           this.messageError = true;
         }

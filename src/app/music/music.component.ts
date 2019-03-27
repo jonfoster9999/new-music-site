@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import {AfterViewChecked, Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 
@@ -8,7 +9,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class MusicComponent implements OnInit, AfterViewChecked {
   fragment;
-  constructor(private route: ActivatedRoute) {};
+  constructor(private route: ActivatedRoute, private authService: AuthService) {};
 
   ngOnInit() {
     this.route.fragment.subscribe(fragment => { this.fragment = fragment; });

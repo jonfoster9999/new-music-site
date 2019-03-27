@@ -25,6 +25,7 @@ import { SignupComponent } from './signup/signup.component';
 import { AuthService } from './auth.service';
 import { MaterialModule } from './material.module';
 import { SafePipe } from './safe.pipe';
+import { FavoritesComponent } from './favorites/favorites.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { SafePipe } from './safe.pipe';
     NewNotableComponent,
     AuthComponent,
     SignupComponent,
-    SafePipe
+    SafePipe,
+    FavoritesComponent
   ],
   imports: [
     MaterialModule,
@@ -58,6 +60,7 @@ import { SafePipe } from './safe.pipe';
         {path: '', redirectTo: 'albums', pathMatch: 'full'},
         {path: 'fullsongs', component: PlayerComponent, data: { data: 'fullsongs'}},
         {path: 'new-notable', component: NewNotableComponent},
+        {path: 'favorites', component: FavoritesComponent },
         {path: 'advertising', component: PlayerComponent, data: { data: 'advertising'}},
         {path: 'albums', component: AlbumsComponent, children: [
             { path: ':albumId', component: AlbumComponent, outlet: 'album' }

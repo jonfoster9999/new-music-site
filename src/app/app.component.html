@@ -5,6 +5,11 @@
   <ul class="title" style="float: left;">
     <li class="li-title" [routerLink]="''" fragment="top">Never Ending Tape</li>
   </ul>
+
+  <!--<ul class="nav user-nav">-->
+      <!--<img src="../assets/my_user.png" alt="" height="18px" style="float: right; margin-top: 6px;">-->
+  <!---->
+
   <ul class="nav">
 
     <li [routerLink]="'about'" routerLinkActive="selected-menu-item" fragment="anchor">About</li>
@@ -16,14 +21,33 @@
     <li [routerLink]="'contact'" routerLinkActive="selected-menu-item" fragment="anchor">Contact</li>
 
     <ng-template [ngIf]="!authService.isAuthenticated()">
-      <li class="optional-li" [routerLink]="[{ outlets: { auth: 'login' } }]">Signup/Login</li>
+      <li class="optional-li" [routerLink]="[{ outlets: { auth: 'login' } }]" style="margin-right: 35px;">Signup/Login</li>
     </ng-template>
 
     <ng-template [ngIf]="authService.isAuthenticated()">
 
-      <li class="optional-li" (click)="logout()" style="color: silver;">{{ authService.currentUser.email }} </li>
+      <li class="optional-li" style="color: silver;">
+        <span class="logged-in-big">
+          <span class="logged-in-name">
+            {{ authService.currentUser.email }}
+          </span>
+          <span style="color:white" (click)="logout()" >
+            (logout)
+          </span>
+        </span>
+
+        <span class="logged-in-small">
+          <span style="color:white" (click)="logout()" >
+            Logout
+          </span>
+        </span>
+
+      </li>
+
     </ng-template>
   </ul>
+
+
 
 </div>
 <div class="main-pic">

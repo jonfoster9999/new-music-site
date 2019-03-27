@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 import { AlbumsService } from '../albums.service';
 import { AlbumComponent } from '../album/album.component';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -49,6 +49,7 @@ import { trigger, state, style, transition,
   encapsulation: ViewEncapsulation.None
 })
 export class AlbumsComponent implements OnInit {
+  @ViewChild('el') el: any;
   loadingAlbums = true;
   albums;
   showBackgroundOverlay;
@@ -62,7 +63,6 @@ export class AlbumsComponent implements OnInit {
     private router: Router,
     public activatedRoute: ActivatedRoute
   ) {
-    console.log('activated route', this.activatedRoute);
   }
 
   ngOnInit() {
@@ -89,6 +89,7 @@ export class AlbumsComponent implements OnInit {
         this.visibleAlbums = this.albumsService.albums
         this.loadingAlbums = false
       });
+
     }
   }
 
@@ -115,7 +116,6 @@ export class AlbumsComponent implements OnInit {
   }
 
   seeChange() {
-    console.log(this.selectedTags);
   }
 
   filterByTags(el) {
@@ -134,9 +134,11 @@ export class AlbumsComponent implements OnInit {
 
   toggleShowDiv(divName: string) {
     if (divName === 'divA') {
-      console.log(this.animationState);
       this.animationState = this.animationState === 'out' ? 'in' : 'out';
-      console.log(this.animationState);
     }
+  }
+
+  tagWasClicked(el) {
+    this.el.open();
   }
 }

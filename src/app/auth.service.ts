@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 import {Subject} from 'rxjs';
 
 @Injectable({
@@ -10,20 +10,19 @@ export class AuthService {
   token: string;
   app;
   currentUser = null;
-
   authChange = new Subject();
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private route: ActivatedRoute) {
 
   }
 
   signupUser(email: string, password: string) {
-    return firebase.auth().createUserWithEmailAndPassword(email, password)
+    return firebase.auth().createUserWithEmailAndPassword(email, password);
 
   }
 
   signinUser(email: string, password: string) {
-    return firebase.auth().signInWithEmailAndPassword(email, password)
+    return firebase.auth().signInWithEmailAndPassword(email, password);
   }
 
   getToken() {
@@ -40,7 +39,13 @@ export class AuthService {
 
   logout() {
     firebase.auth().signOut();
+    if (this.route.snapshot['_routerState'].url == '/music/favorites') {
+      this.router.navigate(['/music'])
+    };
     this.token = null;
+    this.currentUser = null;
+    this.authChange.next();
+    
   }
 
   // constructor() { }

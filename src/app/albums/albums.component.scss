@@ -140,6 +140,10 @@ div.ng-placeholder {
   // text-transform: none;
 }
 
+.tag {
+  cursor: pointer;
+}
+
 ng-select.custom-select.ng-select-multiple.ng-valid.ng-select-bottom.ng-touched.ng-dirty.ng-select-focused ::ng-deep {
   outline: none !important;
   // box-shadow: none;
