@@ -35,9 +35,10 @@
   <article *ngFor="let album of visibleAlbums" class="album-article">
     <img [src]="album.cover" alt="Sample photo">
     <div class="text">
-      <h3>{{ album.title }} - {{ album.artist }}<span></span></h3>
+      <h3 class="album-header-info">{{ album.title }}</h3>
+        <h4 class="album-header-info">{{ album.artist }}<span></span></h4>
       <p class="album-description">{{ album.description }}<span></span></p>
-      <p></p>
+
         <span (click)="tagWasClicked(el)" *ngFor="let tag of album.tags" class="tag">
           {{ tag }}
         </span>

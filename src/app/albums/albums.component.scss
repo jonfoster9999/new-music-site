@@ -74,6 +74,7 @@
 .album-description {
   text-transform: none;
   font-size: .8em;
+  margin-bottom: 7px;
 }
 
 .no-match {
@@ -142,6 +143,7 @@ div.ng-placeholder {
 
 .tag {
   cursor: pointer;
+  background: rgb(183, 185, 199);
 }
 
 ng-select.custom-select.ng-select-multiple.ng-valid.ng-select-bottom.ng-touched.ng-dirty.ng-select-focused ::ng-deep {
@@ -200,4 +202,17 @@ span.ng-clear-wrapper, span.ng-arrow-wrapper {
 
 .album-article {
   // border: none !important;
+}
+
+h3.album-header-info {
+  font-size: .9em;
+
+  margin: .2em;
+  margin-top: 1em;
+}
+
+h4.album-header-info {
+  font-size: .75em;
+
+  margin: .2em;
 }

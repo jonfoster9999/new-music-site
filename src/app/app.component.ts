@@ -39,6 +39,8 @@ export class AppComponent implements OnInit {
       (<any>window).attachEvent('onmessage', this.receiveMessage.bind(this));
     }
     this.database = firebase.database();
+
+    this.authService.logout();
   }
 
   receiveMessage(msg) {

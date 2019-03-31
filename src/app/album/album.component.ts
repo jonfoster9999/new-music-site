@@ -2,7 +2,6 @@ import { Component, EventEmitter, HostBinding, HostListener, Inject, OnDestroy, 
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlbumsService } from '../albums.service';
-import * as amplitudejs from 'amplitudejs';
 import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
 import {AuthService } from '../auth.service';
 import * as firebase from 'firebase';
