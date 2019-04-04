@@ -14,7 +14,7 @@ export class FavoritesComponent implements OnInit {
   url;
   listener;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(public authService: AuthService, private router: Router) {
     this.database = firebase.database();
   }
 

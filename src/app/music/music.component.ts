@@ -9,7 +9,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class MusicComponent implements OnInit, AfterViewChecked {
   fragment;
-  constructor(private route: ActivatedRoute, private authService: AuthService) {};
+  constructor(private route: ActivatedRoute, public authService: AuthService) {};
 
   ngOnInit() {
     this.route.fragment.subscribe(fragment => { this.fragment = fragment; });

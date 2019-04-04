@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   app;
   database;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(public authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.app = firebase.initializeApp({
