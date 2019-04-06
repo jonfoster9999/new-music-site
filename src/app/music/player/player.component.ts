@@ -10,6 +10,7 @@ import {Subscription} from "rxjs/index";
 export class PlayerComponent implements OnInit, AfterViewChecked {
   private sub: Subscription;
   fragment;
+  alreadyScrolled = false;
   data: string;
   constructor(private route: ActivatedRoute) { }
 
@@ -22,10 +23,11 @@ export class PlayerComponent implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked(): void {
     try {
-      if(this.fragment === 'top') {
+      if(this.fragment === 'top' && !this.alreadyScrolled) {
+
         window.scrollTo(0, 0);
+        this.alreadyScrolled = true;
       }
     } catch (e) { }
   }
-
 }

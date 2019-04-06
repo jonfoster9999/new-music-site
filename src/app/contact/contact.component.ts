@@ -16,6 +16,7 @@ export class ContactComponent implements OnInit, AfterViewChecked {
   messageSuccessfullySent = false;
   messageError = false;
   showSpinner = false;
+  alreadyScrolled = false;
   constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -45,8 +46,9 @@ export class ContactComponent implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked(): void {
     try {
-      if(this.fragment) {
+      if(this.fragment && !this.alreadyScrolled) {
         document.querySelector('#' + this.fragment).scrollIntoView();
+        this.alreadyScrolled = true;
       }
     } catch (e) { }
   }

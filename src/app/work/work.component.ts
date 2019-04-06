@@ -8,6 +8,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class WorkComponent implements OnInit, AfterViewChecked {
   fragment;
+  alreadyScrolled = false;
 
   constructor(private route: ActivatedRoute) { }
 
@@ -17,8 +18,9 @@ export class WorkComponent implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked(): void {
     try {
-      if(this.fragment) {
+      if(this.fragment && !this.alreadyScrolled) {
         document.querySelector('#' + this.fragment).scrollIntoView();
+        this.alreadyScrolled = true;
       }
     } catch (e) { }
   }

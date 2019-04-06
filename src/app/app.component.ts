@@ -28,7 +28,6 @@ export class AppComponent implements OnInit {
     const userKey = Object.keys(window.localStorage)
       .filter(it => it.startsWith('firebase:authUser'))[0];
     const user = userKey ? JSON.parse(localStorage.getItem(userKey)) : undefined;
-    console.log('user is', user)
     if (user) {
       this.authService.currentUser = user;
       this.authService.token = this.authService.currentUser.stsTokenManager.accessToken;

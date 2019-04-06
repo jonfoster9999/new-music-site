@@ -101,7 +101,6 @@ export class AlbumComponent implements OnInit, OnDestroy {
   }
 
   getUID() {
-    console.log(this.authService.currentUser)
     if (this.authService.currentUser) {
       return this.authService.currentUser.uid
     } else {

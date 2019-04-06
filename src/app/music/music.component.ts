@@ -9,6 +9,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class MusicComponent implements OnInit, AfterViewChecked {
   fragment;
+  alreadyScrolled = false;
   constructor(private route: ActivatedRoute, public authService: AuthService) {};
 
   ngOnInit() {
@@ -17,8 +18,9 @@ export class MusicComponent implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked(): void {
     try {
-      if(this.fragment) {
+      if(this.fragment && !this.alreadyScrolled) {
         document.querySelector('#' + this.fragment).scrollIntoView();
+        this.alreadyScrolled = true;
       }
     } catch (e) { }
   }

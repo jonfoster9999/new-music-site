@@ -7,7 +7,7 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit, AfterViewChecked {
-
+  alreadyScrolled = false;
   fragment;
 
   constructor(private route: ActivatedRoute) { }
@@ -18,7 +18,8 @@ export class AboutComponent implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked(): void {
     try {
-      if(this.fragment) {
+      if(this.fragment && !this.alreadyScrolled) {
+        this.alreadyScrolled = true;
         window.scrollTo(0, 790);
       }
     } catch (e) { }

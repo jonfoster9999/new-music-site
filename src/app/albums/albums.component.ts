@@ -59,6 +59,7 @@ export class AlbumsComponent implements OnInit {
   selectedTags = [];
   animationState = 'in';
   selectedFilters = null;
+  fragment;
   constructor(
     private albumsService: AlbumsService,
     private router: Router,
@@ -67,13 +68,19 @@ export class AlbumsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.activatedRoute.fragment.subscribe(fragment => { this.fragment = fragment; });
+
     if (this.activatedRoute.snapshot.queryParams.selectedFilters) {
       this.selectedFilters = this.activatedRoute.snapshot.queryParams.selectedFilters.split(",")
     }
     if (this.albumsService.albums && this.albumsService.tags) {
       this.albums = this.albumsService.albums.filter(album => album['release_type'] == 'net_album');
 
-      this.tags = this.albumsService.tags
+      const allTags = [].concat.apply([], this.albums.map(album => album.tags))
+
+      this.tags = this.filterObject(Object.assign({}, this.albumsService.tags), function(k, v) {
+        return allTags.indexOf(+k) == -1 && allTags.indexOf(v) == -1;
+      })
 
       this.tagNames = Object.values(this.tags);
 
@@ -92,9 +99,13 @@ export class AlbumsComponent implements OnInit {
       .subscribe(payload => {
         const untouchedAlbums = payload['albums']
         this.albums = payload['albums'].filter(album => album['release_type'] == 'net_album');
-        this.tags = payload['tags'];
-        this.tagNames = Object.values(this.tags);
+
+        const allTags = [].concat.apply([], this.albums.map(album => album.tags))
         this.albumsService.tags = payload['tags'];
+        this.tags = this.filterObject(Object.assign({}, payload['tags']), function(k, v) {
+          return allTags.indexOf(+k) == -1;
+        })
+        this.tagNames = Object.values(this.tags);
 
         this.albums.forEach(album => {
           album.tags = album.tags.map(tag => this.decodeTag(tag))
@@ -155,6 +166,16 @@ export class AlbumsComponent implements OnInit {
     document.getElementById('dumb').focus()
   }
 
+  filterObject(obj, predicate) {
+    var result = {}, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key) && !predicate(key, obj[key])) {
+            result[key] = obj[key];
+        }
+    }
+    return result;
+  }
+
   toggleShowDiv(divName: string) {
     if (divName === 'divA') {
       this.animationState = this.animationState === 'out' ? 'in' : 'out';
@@ -163,5 +184,14 @@ export class AlbumsComponent implements OnInit {
 
   tagWasClicked(el) {
     this.el.open();
+  }
+
+  ngAfterViewChecked(): void {
+    try {
+      if(this.fragment === 'top') {
+        console.log('did this fire?')
+        window.scrollTo(0, 0);
+      }
+    } catch (e) { }
   }
 }

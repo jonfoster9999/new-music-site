@@ -28,7 +28,6 @@ export class FavoritesComponent implements OnInit {
   }
 
   getUID() {
-    console.log(this.authService.currentUser)
     if (this.authService.currentUser) {
       return this.authService.currentUser.uid
     } else {

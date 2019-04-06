@@ -29,3 +29,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 append ?auth=token if we want to use firebase
 
+
+
+TODO:
+  - factor out albums/compilations to one view?
+  - toast notification when adding a favorite
+  - vertically center player

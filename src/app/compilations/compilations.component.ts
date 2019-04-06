@@ -6,6 +6,8 @@ import { trigger, state, style, transition,
     animate, group, query, stagger, keyframes
 } from '@angular/animations';
 
+
+
 @Component({
   selector: 'app-compilations',
   templateUrl: './compilations.component.html',
@@ -47,6 +49,10 @@ import { trigger, state, style, transition,
   encapsulation: ViewEncapsulation.None
 })
 export class CompilationsComponent implements OnInit {
+
+
+
+
   @ViewChild('el') el: any;
   loadingAlbums = true;
   albums;
@@ -65,7 +71,6 @@ export class CompilationsComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('on init runs')
     if (this.activatedRoute.snapshot.queryParams.selectedFilters) {
       this.selectedFilters = this.activatedRoute.snapshot.queryParams.selectedFilters.split(",")
     }
@@ -73,8 +78,12 @@ export class CompilationsComponent implements OnInit {
 
       this.albums = this.albumsService.albums.filter(album => album['release_type'] != 'net_album');
 
+      const allTags = [].concat.apply([], this.albums.map(album => album.tags))
 
-      this.tags = this.albumsService.tags
+      this.tags = this.filterObject(Object.assign({}, this.albumsService.tags), function(k, v) {
+        return allTags.indexOf(+k) == -1 && allTags.indexOf(v) == -1;
+      })
+
       this.tagNames = Object.values(this.tags);
 
       this.albums.forEach((album, i) => {
@@ -92,9 +101,15 @@ export class CompilationsComponent implements OnInit {
       .subscribe(payload => {
         const untouchedAlbums = payload['albums']
         this.albums = payload['albums'].filter(album => album['release_type'] != 'net_album');
-        this.tags = payload['tags'];
-        this.tagNames = Object.values(this.tags);
+
+        const allTags = [].concat.apply([], this.albums.map(album => album.tags))
         this.albumsService.tags = payload['tags'];
+        this.tags = this.filterObject(Object.assign({}, payload['tags']), function(k, v) {
+          return allTags.indexOf(+k) == -1;
+        })
+
+        this.tagNames = Object.values(this.tags);
+
 
         this.albums.forEach((album, i) => {
           album.tags = album.tags.map(tag => this.decodeTag(tag))
@@ -109,6 +124,16 @@ export class CompilationsComponent implements OnInit {
         }
       });
     }
+  }
+
+  filterObject(obj, predicate) {
+    var result = {}, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key) && !predicate(key, obj[key])) {
+            result[key] = obj[key];
+        }
+    }
+    return result;
   }
 
   getLongestAlbumNameCount(albums) {
@@ -130,7 +155,6 @@ export class CompilationsComponent implements OnInit {
   }
 
   decodeTag(i) {
-    console.log(i);
     if (+i === i) {
       return this.tags[String(i)];
     } else {
