@@ -7,11 +7,9 @@ import { trigger, state, style, transition,
 } from '@angular/animations';
 
 @Component({
-  selector: 'app-albums',
-  templateUrl: './albums.component.html',
-  styleUrls: [
-    './albums.component.scss'
-  ],
+  selector: 'app-compilations',
+  templateUrl: './compilations.component.html',
+  styleUrls: ['./compilations.component.css'],
   animations: [
     trigger('slideInOut', [
         state('in', style({
@@ -48,7 +46,7 @@ import { trigger, state, style, transition,
   ],
   encapsulation: ViewEncapsulation.None
 })
-export class AlbumsComponent implements OnInit {
+export class CompilationsComponent implements OnInit {
   @ViewChild('el') el: any;
   loadingAlbums = true;
   albums;
@@ -67,14 +65,16 @@ export class AlbumsComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('on init runs')
     if (this.activatedRoute.snapshot.queryParams.selectedFilters) {
       this.selectedFilters = this.activatedRoute.snapshot.queryParams.selectedFilters.split(",")
     }
     if (this.albumsService.albums && this.albumsService.tags) {
-      this.albums = this.albumsService.albums.filter(album => album['release_type'] == 'net_album');
+
+      this.albums = this.albumsService.albums.filter(album => album['release_type'] != 'net_album');
+
 
       this.tags = this.albumsService.tags
-
       this.tagNames = Object.values(this.tags);
 
       this.albums.forEach((album, i) => {
@@ -91,12 +91,12 @@ export class AlbumsComponent implements OnInit {
     this.albumsService.getAlbums()
       .subscribe(payload => {
         const untouchedAlbums = payload['albums']
-        this.albums = payload['albums'].filter(album => album['release_type'] == 'net_album');
+        this.albums = payload['albums'].filter(album => album['release_type'] != 'net_album');
         this.tags = payload['tags'];
         this.tagNames = Object.values(this.tags);
         this.albumsService.tags = payload['tags'];
 
-        this.albums.forEach(album => {
+        this.albums.forEach((album, i) => {
           album.tags = album.tags.map(tag => this.decodeTag(tag))
         })
         this.albumsService.albums = untouchedAlbums;
@@ -117,7 +117,7 @@ export class AlbumsComponent implements OnInit {
 
   listen(album) {
     this.albumsService.currentAlbum = album
-    this.router.navigate([{ outlets: { album: [album.title]  } }], { relativeTo: this.activatedRoute });
+    this.router.navigate([{ outlets: { compilation: [album.title]  } }], { relativeTo: this.activatedRoute });
   }
 
   albumPopupActivated(componentRef: AlbumComponent) {
@@ -130,6 +130,7 @@ export class AlbumsComponent implements OnInit {
   }
 
   decodeTag(i) {
+    console.log(i);
     if (+i === i) {
       return this.tags[String(i)];
     } else {

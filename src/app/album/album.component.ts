@@ -60,31 +60,42 @@ export class AlbumComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.visibilityTimeout = window.setTimeout(() => this.isVisible = true);
     const currentAlbum = this.activatedRoute.snapshot.params.albumId;
-    if (this.albumsService.albums && this.albumsService.tags) {
-      this.currentAlbum = this.albumsService.albums.find(album => album.title === currentAlbum);
-      this.tags = this.albumsService.tags;
-      this.url = 'http://www.net-album-player.com.s3-website-us-east-1.amazonaws.com/?albumPath=' + this.currentAlbum.path.replace('/', '') + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
+    if (currentAlbum.indexOf('private_link') > - 1) {
+      this.currentAlbum = {
+        title: 'Private Link',
+        artist: 'Never Ending Tape',
+        path: currentAlbum
+      }
+      this.tags = []
+      this.url = 'https://d1e06abilcmk8l.cloudfront.net/?albumPath=' + currentAlbum + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
       this.loadingAlbum = false;
     } else {
-      this.albumsService.getAlbums().subscribe(payload => {
-
-        this.albums = payload['albums'];
-        this.tags = payload['tags'];
-        this.albumsService.tags = payload['tags'];
-
-        this.albums.forEach(album => {
-          album.tags = album.tags.map(tag => this.decodeTag(tag))
-        })
-        this.albumsService.albums = this.albums;
-        this.currentAlbum = this.albumsService.albums.find(album => album.title == currentAlbum);
-        this.url = 'http://www.net-album-player.com.s3-website-us-east-1.amazonaws.com/?albumPath=' + this.currentAlbum.path.replace('/', '') + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
+      if (this.albumsService.albums && this.albumsService.tags) {
+        this.currentAlbum = this.albumsService.albums.find(album => album.title === currentAlbum);
+        this.tags = this.albumsService.tags;
+        this.url = 'https://d1e06abilcmk8l.cloudfront.net/?albumPath=' + this.currentAlbum.path.replace('/', '') + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
         this.loadingAlbum = false;
-      })
+      } else {
+        this.albumsService.getAlbums().subscribe(payload => {
+          this.albums = payload['albums'];
+          this.tags = payload['tags'];
+          this.albumsService.tags = payload['tags'];
+
+          this.albums.forEach(album => {
+            album.tags = album.tags.map(tag => this.decodeTag(tag))
+          })
+          this.albumsService.albums = this.albums;
+          this.currentAlbum = this.albumsService.albums.find(album => album.title == currentAlbum);
+          this.url = 'https://d1e06abilcmk8l.cloudfront.net/?albumPath=' + this.currentAlbum.path.replace('/', '') + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
+          this.loadingAlbum = false;
+        })
+      }
     }
+
 
     this.authService.authChange.subscribe(
       () => {
-        this.url = 'http://www.net-album-player.com.s3-website-us-east-1.amazonaws.com/?albumPath=' + this.currentAlbum.path.replace('/', '') + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
+        this.url = 'https://d1e06abilcmk8l.cloudfront.net/?albumPath=' + this.currentAlbum.path.replace('/', '') + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
       }
     );
   }
@@ -108,7 +119,11 @@ export class AlbumComponent implements OnInit, OnDestroy {
   }
 
   navigateBackToList() {
-    this.router.navigate(['music', 'albums']);
+    if (this.activatedRoute.snapshot.outlet == 'compilation') {
+      this.router.navigate(['music', 'compilations']);
+    } else {
+      this.router.navigate(['music', 'albums']);
+    };
   }
 
   @HostListener('@isVisibleChanged.done', ['$event'])

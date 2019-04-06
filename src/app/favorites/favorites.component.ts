@@ -19,10 +19,10 @@ export class FavoritesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.url = 'http://www.net-album-player.com.s3-website-us-east-1.amazonaws.com/?albumPath=favorites&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
+    this.url = 'https://d1e06abilcmk8l.cloudfront.net/?albumPath=favorites&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
     this.authService.authChange.subscribe(
       () => {
-        this.url = 'http://www.net-album-player.com.s3-website-us-east-1.amazonaws.com/?albumPath=favorites&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
+        this.url = 'https://d1e06abilcmk8l.cloudfront.net/?albumPath=favorites&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
       }
     );
   }
