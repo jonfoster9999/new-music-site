@@ -8,7 +8,7 @@ import { VideosComponent } from './videos/videos.component';
 import { PressComponent } from './press/press.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from "@angular/common/http";
 import { CreditsComponent } from './credits/credits.component';
 import { AngularFontAwesomeModule} from 'angular-font-awesome';
@@ -26,6 +26,7 @@ import { AuthService } from './auth.service';
 import { MaterialModule } from './material.module';
 import { SafePipe } from './safe.pipe';
 import { FavoritesComponent } from './favorites/favorites.component';
+import { ToastrModule } from 'ng6-toastr-notifications';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
     HttpClientModule,
     NgSelectModule,
     FlexLayoutModule,
+    ToastrModule.forRoot(),
     RouterModule.forRoot([
       { path: 'music', component: MusicComponent, children: [
         {path: '', redirectTo: 'albums', pathMatch: 'full'},

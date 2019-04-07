@@ -1,7 +1,8 @@
-import {AfterViewChecked, Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { AfterViewChecked, Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as firebase from 'firebase';
-import {AuthService} from './auth.service';
+import { AuthService } from './auth.service';
+import { ToastrManager } from 'ng6-toastr-notifications';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class AppComponent implements OnInit {
   app;
   database;
 
-  constructor(public authService: AuthService, private router: Router) {}
+  constructor(public authService: AuthService, private router: Router, public toastr: ToastrManager) {}
 
   ngOnInit() {
     this.app = firebase.initializeApp({
@@ -88,6 +89,7 @@ export class AppComponent implements OnInit {
         songs: songs_array,
         tags: []
       })
+      this.toastr.successToastr('Added to favorites', msg.data.song.title, {animate: 'fade', toastTimeout: 800});
     }
   }
 
@@ -115,6 +117,7 @@ export class AppComponent implements OnInit {
         songs: songs_array,
         tags: []
       })
+      this.toastr.successToastr('Removed from favorites', msg.data.song.title, {animate: 'fade', toastTimeout: 800});
     }
   }
 
