@@ -6,7 +6,7 @@ import {ActivatedRoute} from '@angular/router';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.css']
+  styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit, AfterViewChecked {
   fragment: string;
@@ -40,8 +40,7 @@ export class ContactComponent implements OnInit, AfterViewChecked {
         this.showSpinner = false;
         this.messageError = true;
       }
-    )
-      ;
+    );
   }
 
   ngAfterViewChecked(): void {
@@ -52,5 +51,4 @@ export class ContactComponent implements OnInit, AfterViewChecked {
       }
     } catch (e) { }
   }
-
 }

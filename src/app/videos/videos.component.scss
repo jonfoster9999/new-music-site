@@ -1,0 +1,85 @@
+p {
+  text-align: center;
+}
+
+.grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-areas: "one one two two";
+  grid-template-rows: auto;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+}
+
+.description {
+  background: linear-gradient(45deg,green, lightgreen);
+  background-position: 0% 30%;
+  opacity: .7;
+  border-radius: 5px;
+  border: none;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  color: white;
+
+  h3 {
+    position: absolute;
+    color: white;
+    top: 0;
+    margin: 0px;
+    padding-top: 10px;
+    padding-left: 10px;
+    font-size: 7vw;
+    line-height: 5vw;
+    text-shadow: 2px 2px 2px black;
+  }
+}
+
+.one {
+  @extend .description;
+  grid-area: one;
+  border-radius: 5px;
+  overflow: hidden;
+
+  h3 {
+    text-align: right;
+    width: 92%;
+  }
+}
+
+.two {
+  @extend .description;
+  grid-area: two;
+}
+
+.grid > div {
+  border: 1px solid rgba(100, 100, 100, 0.6);
+  background-color: rgba(100, 100, 100, 0.3);
+  position: relative;
+  height: 0;
+  padding-top: 56.25%;
+  overflow: hidden;
+}
+
+iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.brand {
+  color: white;
+}
+
+.demo {
+  margin-top: -5px;
+  font-size: 5vw;
+  text-transform: none;
+}
+
+.demo-smaller {
+  font-size: 4vw;
+}

@@ -95,7 +95,7 @@ $__sizes: (
   }
 }
 
-.campaign-details {
+.album-details {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -129,7 +129,7 @@ $__sizes: (
   }
 }
 
-.campaign-form {
+.album-form {
   display: flex;
   flex-wrap: wrap;
   width: calc(100% + 24px);
@@ -137,7 +137,7 @@ $__sizes: (
   margin-right: -24px;
 }
 
-.campaign-form mat-form-field,
+.album-form mat-form-field,
 .name-wrapper {
   position: relative;
   width: auto;
@@ -163,7 +163,7 @@ $__sizes: (
   }
 }
 
-.campaign-form .name-wrapper {
+.album-form .name-wrapper {
   .mat-form-field.name {
     width: 100%;
     margin-top: 0;
@@ -181,17 +181,17 @@ $__sizes: (
   }
 }
 
-.campaign-form mat-form-field::ng-deep .mat-form-field-infix {
+.album-form mat-form-field::ng-deep .mat-form-field-infix {
   padding-bottom: 10px;
   padding-top: 8px;
 }
 
-.campaign-form mat-form-field::ng-deep .mat-form-field-underline {
+.album-form mat-form-field::ng-deep .mat-form-field-underline {
   background-color: gray;
   height: 2px;
 }
 
-.campaign-form mat-form-field.mat-form-field-can-float.mat-form-field-should-float::ng-deep .mat-form-field-label {
+.album-form mat-form-field.mat-form-field-can-float.mat-form-field-should-float::ng-deep .mat-form-field-label {
   transform: translateY(-1.28125em) scale(0.9) perspective(100px) translateZ(0.001px);
 }
 
@@ -253,7 +253,7 @@ $__sizes: (
   height: 70px;
   padding: 0 50px;
 
-  .campaign-name {
+  .album-name {
     font-size: 18px;
     font-weight: 700;
     color: black;
@@ -279,7 +279,7 @@ $__sizes: (
   display: none !important;
 }
 
-.campaign-creatives  {
+.album-creatives  {
   position: relative;
   display: flex;
   align-items: flex-start;
@@ -311,7 +311,7 @@ $__sizes: (
   }
 }
 
-.campaign-creatives .controls {
+.album-creatives .controls {
   position: absolute;
   top: 19px;
   right: 48px;
@@ -365,7 +365,7 @@ $__sizes: (
   }
 }
 
-.campaign-creatives .creative-manage {
+.album-creatives .creative-manage {
   display: flex;
   position: absolute;
   top: 15px;
@@ -450,16 +450,6 @@ cam-creative:hover{
    box-shadow: 0px 5px 26px 0 rgba(0,0,0,.36);
 }
 
-#my-container {
-  // height: 100%;
-  // width: 100%;
-  // overflow-y: auto;
-}
-//
-// :host {
-//   overflow-y: scroll;
-// }
-
 #parent{
     height: 100%;
     width: 100%;
@@ -469,6 +459,8 @@ cam-creative:hover{
 #album-player {
   width: 100%;
   height: 100%;
+  border:none;
+  background: lightslategray;
 }
 
 .iframe {
@@ -477,4 +469,27 @@ cam-creative:hover{
   overflow-y: scroll;
   padding-right: 10px; /* Increase/decrease this value for cross-browser compatibility */
   box-sizing: content-box;
+}
+
+#static {
+  background-color: black;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 0px;
+    color: white;
+    margin-top: 30px;
+  }
+
+  h4 {
+    text-align: center;
+    margin-bottom: none;
+    margin-top: 10px;
+    color: #ccc;
+  }
+}
+
+.iframe iframe {
+  border:none;
+  background: lightslategray
 }

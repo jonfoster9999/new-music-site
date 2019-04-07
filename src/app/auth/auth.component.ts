@@ -44,6 +44,4 @@ export class AuthComponent implements OnInit {
         error => this.error = error
       );
   }
-
-
 }

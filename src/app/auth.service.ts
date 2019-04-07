@@ -12,13 +12,10 @@ export class AuthService {
   currentUser = null;
   authChange = new Subject();
 
-  constructor(private router: Router, private route: ActivatedRoute) {
-
-  }
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   signupUser(email: string, password: string) {
     return firebase.auth().createUserWithEmailAndPassword(email, password);
-
   }
 
   signinUser(email: string, password: string) {
@@ -45,8 +42,5 @@ export class AuthService {
     this.token = null;
     this.currentUser = null;
     this.authChange.next();
-    
   }
-
-  // constructor() { }
 }

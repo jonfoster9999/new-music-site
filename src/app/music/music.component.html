@@ -1,19 +1,13 @@
 <div class="music-selector" id="anchor">
   <div class="controls">
-    <h2 class="title"><a href="#" [routerLink]="'albums'" routerLinkActive="selected">Albums</a> | <a href="#" [routerLink]="'compilations'" routerLinkActive="selected">Compilations</a> | <a href="#" [routerLink]="'new-notable'" routerLinkActive="selected">New and Notable</a><span *ngIf="authService.currentUser"> | <a href="#" [routerLink]="'favorites'" routerLinkActive="selected">Favorites</a></span></h2>
-
+    <h2 class="title">
+      <a href="#" [routerLink]="'albums'" routerLinkActive="selected">Albums</a> |
+      <a href="#" [routerLink]="'compilations'" routerLinkActive="selected">Compilations</a> |
+      <a href="#" [routerLink]="'new-notable'" routerLinkActive="selected">New and Notable</a>
+      <span *ngIf="authService.currentUser"> |
+        <a href="#" [routerLink]="'favorites'" routerLinkActive="selected">Favorites</a>
+      </span>
+    </h2>
   </div>
-
 </div>
-
-<!-- <div class="music-selector" style="background-color:#ccc;" id="anchor">
-  <p style="color: white; margin-top: 0px;">Filters</p>
-
-</div> -->
-
 <router-outlet></router-outlet>
-
-
-<div class="picture">
-  <h3>Full Songs</h3>
-</div>

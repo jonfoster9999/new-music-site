@@ -1,61 +1,44 @@
 <router-outlet name="auth">
-
 </router-outlet>
 <div class="header" id="top">
   <ul class="title" style="float: left;">
     <li class="li-title" [routerLink]="''" fragment="top">Never Ending Tape</li>
   </ul>
-
-  <!--<ul class="nav user-nav">-->
-      <!--<img src="../assets/my_user.png" alt="" height="18px" style="float: right; margin-top: 6px;">-->
-  <!---->
-
   <ul class="nav">
-
     <li [routerLink]="'about'" routerLinkActive="selected-menu-item" fragment="anchor">About</li>
     <li [routerLink]="'music'" routerLinkActive="selected-menu-item"  fragment="anchor">Music</li>
     <li [routerLink]="'videos'" routerLinkActive="selected-menu-item" fragment="anchor">Videos</li>
-    <!--<li [routerLink]="'credits'" routerLinkActive="selected-menu-item">Credits</li>-->
-    <!--<li [routerLink]="'press'" routerLinkActive="selected-menu-item">Press</li>-->
     <li [routerLink]="'work'" routerLinkActive="selected-menu-item" fragment="anchor">Latest Work</li>
     <li [routerLink]="'contact'" routerLinkActive="selected-menu-item" fragment="anchor">Contact</li>
 
     <ng-template [ngIf]="!authService.isAuthenticated()">
-      <li class="optional-li" [routerLink]="[{ outlets: { auth: 'login' } }]" style="margin-right: 35px;">Signup/Login</li>
+      <li class="optional-li" [routerLink]="[{ outlets: { auth: 'login' } }]">Signup/Login</li>
     </ng-template>
 
     <ng-template [ngIf]="authService.isAuthenticated()">
 
-      <li class="optional-li" style="color: silver;">
+      <li class="optional-li logged-in-li">
         <span class="logged-in-big">
           <span class="logged-in-name">
             {{ authService.currentUser.email }}
           </span>
-          <span style="color:white" (click)="logout()" >
+          <span class="white-text" (click)="logout()" >
             (logout)
           </span>
         </span>
 
         <span class="logged-in-small">
-          <span style="color:white" (click)="logout()" >
+          <span class="white-text" (click)="logout()" >
             Logout
           </span>
         </span>
-
       </li>
-
     </ng-template>
   </ul>
-
-
-
 </div>
 <div class="main-pic">
   <div class="veil">
-
     <div class="info">
-      <!-- <img class="tape-pic" src="https://cdn.pixabay.com/photo/2014/03/25/16/54/tape-297596_1280.png" alt="Cassette Tape Black And White @clipartmax.com"> -->
-
       <h1 class="artist-name"><span class="my-name">Never Ending Tape</span></h1>
       <p>Music Composition/Production for TV and Film</p>
     </div>
@@ -69,8 +52,6 @@
     <div class="social-footer-icons">
       <ul class="menu simple">
         <li><a href="https://www.facebook.com/neverendingtape"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-        <!-- <li><a href="https://www.instagram.com/?hl=en"><i class="fa fa-instagram" aria-hidden="true"></i></a></li> -->
-        <!-- <li><a href="https://www.pinterest.com/"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li> -->
         <li><a href="https://twitter.com/neverendingtape"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
       </ul>
     </div>

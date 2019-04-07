@@ -15,7 +15,6 @@ export class AlbumsService {
   currentAlbum;
 
   getAlbums() {
-    // return of(this.albums)
     return this.httpClient.get('https://c8ujs1df85.execute-api.us-east-1.amazonaws.com/dev/albums')
   }
 }

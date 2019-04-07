@@ -6,7 +6,6 @@
   height: 30px;
   background-color: rgb(30, 30, 30);
   z-index:2;
-
 }
 
 .main-pic {
@@ -15,21 +14,19 @@
                      rgba(72,55,120, .3),
                      rgba(72,55,120, .5),
                      rgba(72,55,120, .4),
-                    rgba(72,55,120, .3)),
+                     rgba(72,55,120, .3)),
                      url('/assets/studio.jpg');
   background-size: cover;
   width: 100%;
   height: 20px;
   padding-bottom: 50%;
-
-  /*display: flex;*/
-  /*align-items: center;*/
   box-sizing: border-box;
-  /*padding-bottom: 75%;*/
 }
 
+.title {
+  float: left
+}
 .veil {
-  /*margin-top: 275px;*/
   display: relative;
   width: 100%;
   text-align: center;
@@ -62,12 +59,12 @@ ul {
     list-style: none;
     margin-top: 8px;
 }
+
 li {
   display: inline;
   margin: 0 15px;
   text-transform: none;
   cursor: pointer;
-
 }
 
 li:focus {
@@ -79,9 +76,7 @@ li:focus {
 }
 
 .info{
-  /*height: 200px;*/
   padding-top: 19%;
-  /* display: none; */
 }
 
 .router-outlet {
@@ -109,15 +104,10 @@ li:focus {
   ul .nav {
     -webkit-padding-start: 0;
     padding-start: 0;
-
   }
 
   li {
     margin: 0 8px;
-  }
-  .header {
-    /* height: 27px; */
-    /* border-bottom: 1px solid white; */
   }
 
   .title {
@@ -148,8 +138,6 @@ li:focus {
   .nav {
     margin-top: 10px;
   }
-
-
 }
 
 .artist-name {
@@ -222,4 +210,16 @@ li:focus {
 
 .logged-in-name, .logged-in-name:hover {
   cursor: default !important;
+}
+
+.optional-li {
+  margin-right: 35px;
+}
+
+.logged-in-li {
+  color: silver;
+}
+
+.white-text {
+  color: white;
 }

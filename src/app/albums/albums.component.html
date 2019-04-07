@@ -1,66 +1,63 @@
 <div style="position: relative;">
+  <div class="album-background-overlay"
+       [class.visible]="showBackgroundOverlay">
+  </div>
+
+  <div class="no-match" *ngIf="loadingAlbums">
+    Loading Albums...
+  </div>
 
 
-<div class="campaign-background-overlay"
-     [class.visible]="showBackgroundOverlay">
-</div>
+  <ng-select *ngIf="!loadingAlbums" [@slideInOut]="animationState" class="animated-div custom-select"
+        id="thing"
+        style="box-shadow: none; outline: 0;"
+        [items]="tagNames"
+        [multiple]="true"
+        [closeOnSelect]="true"
+        [searchable]="false"
+        bindLabel="name"
+        placeholder="Filter Albums By Tags"
+        (change)="filterByTags(el)"
+        (clear)="clearSelections()"
+        [(ngModel)]="selectedTags"
+        #el>
+  </ng-select>
 
-<div class="no-match" *ngIf="loadingAlbums">
-  Loading Albums...
-</div>
+  <div class="bar" *ngIf="!loadingAlbums && selectedTags.length > 0">
+    Note: You are viewing a filtered list. Add or remove filters above.
+  </div>
 
+  <input id="helper-placeholder">
+  <main *ngIf="!loadingAlbums && visibleAlbums.length > 0" class="grid">
+    <article *ngFor="let album of visibleAlbums" class="album-article">
+      <img [src]="album.cover" alt="Sample photo">
+      <div class="text">
+        <h3 class="album-header-info">{{ album.title }}</h3>
+          <h4 class="album-header-info">{{ album.artist }}<span></span></h4>
+        <p class="album-description">{{ album.description }}<span></span></p>
 
-<ng-select *ngIf="!loadingAlbums" [@slideInOut]="animationState" class="animated-div custom-select"
-      id="thing"
-      style="box-shadow: none; outline: 0;"
-      [items]="tagNames"
-      [multiple]="true"
-      [closeOnSelect]="true"
-      [searchable]="false"
-      bindLabel="name"
-      placeholder="Filter Albums By Tags"
-      (change)="filterByTags(el)"
-      (clear)="clearSelections()"
-      [(ngModel)]="selectedTags"
-      #el>
-</ng-select>
+          <span (click)="tagWasClicked(el)" *ngFor="let tag of album.tags" class="tag">
+            {{ tag }}
+          </span>
 
-<div class="bar" *ngIf="!loadingAlbums && selectedTags.length > 0">
-  Note: You are viewing a filtered list. Add or remove filters above.
-</div>
+        <p></p>
+        <br>
+        <button (click)="listen(album)" class="listen-button">Listen Now</button>
+      </div>
+    </article>
+  </main>
 
-<input id="helper-placeholder">
-<!-- <button (click)="toggleShowDiv('divA')">TOGGLE DIV</button> -->
-<main *ngIf="!loadingAlbums && visibleAlbums.length > 0" class="grid">
-  <article *ngFor="let album of visibleAlbums" class="album-article">
-    <img [src]="album.cover" alt="Sample photo">
-    <div class="text">
-      <h3 class="album-header-info">{{ album.title }}</h3>
-        <h4 class="album-header-info">{{ album.artist }}<span></span></h4>
-      <p class="album-description">{{ album.description }}<span></span></p>
+  <div class="no-match" *ngIf="!loadingAlbums && visibleAlbums.length == 0">
+    No albums match this criteria
+  </div>
 
-        <span (click)="tagWasClicked(el)" *ngFor="let tag of album.tags" class="tag">
-          {{ tag }}
-        </span>
+  <router-outlet *ngIf="context == 'net_album'" name="net_album"
+    (activate)="albumPopupActivated($event)"
+    (deactivate)="albumPopupDeactivated()">
+  </router-outlet>
 
-      <p></p>
-      <br>
-      <button (click)="listen(album)" class="listen-button">Listen Now</button>
-    </div>
-  </article>
-</main>
-
-<div class="no-match" *ngIf="!loadingAlbums && visibleAlbums.length == 0">
-  No albums match this criteria
-</div>
-
-<router-outlet *ngIf="context == 'net_album'" name="net_album"
-  (activate)="albumPopupActivated($event)"
-  (deactivate)="albumPopupDeactivated()">
-</router-outlet>
-
-<router-outlet *ngIf="context == 'net_compilation'" name="net_compilation"
-  (activate)="albumPopupActivated($event)"
-  (deactivate)="albumPopupDeactivated()">
-</router-outlet>
+  <router-outlet *ngIf="context == 'net_compilation'" name="net_compilation"
+    (activate)="albumPopupActivated($event)"
+    (deactivate)="albumPopupDeactivated()">
+  </router-outlet>
 </div>

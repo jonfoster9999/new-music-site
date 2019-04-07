@@ -1,8 +1,6 @@
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
-
-
-.campaign-background-overlay {
+.album-background-overlay {
   position: fixed;
   width: 100%;
   top: 0;
@@ -89,21 +87,15 @@ div.ng-select-container {
   width: 100% !important;
   margin: auto;
   background-color: rgba(65,70, 94, .6) !important;
-
 }
 
 .ng-select .ng-select-container, .ng-select:hover, .ng-select-container:hover {
   border-top-left-radius: 0px !important;
   border-top-right-radius: 0px !important;
-  // border: none !important;
-  // border-radius: 0 !important;
   border: none !important;
   z-index: 1;
   box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3) !important;
-
 }
-
-
 
 div.ng-select-container:focus, div.ng-select-container:active {
   outline: none;
@@ -138,7 +130,6 @@ div.ng-placeholder {
   color: #ddd !important;
   text-align: center;
   margin-top: 5px;
-  // text-transform: none;
 }
 
 .tag {
@@ -148,12 +139,10 @@ div.ng-placeholder {
 
 ng-select.custom-select.ng-select-multiple.ng-valid.ng-select-bottom.ng-touched.ng-dirty.ng-select-focused ::ng-deep {
   outline: none !important;
-  // box-shadow: none;
 }
 
 div.ng-select-container.ng-has-value {
   outline: none !important;
-  // box-shadow: none;
 }
 
 div.ng-dropdown-panel-options {
@@ -192,27 +181,19 @@ ng-select.ng-select-focused, div.ng-value-container {
   justify-content: center;
   color: #eee;
   font-size: .6em;
-  // border-bottom: 1px solid rgba(66, 55, 72, .3);
-
 }
 
 span.ng-clear-wrapper, span.ng-arrow-wrapper {
   color: white !important;
 }
 
-.album-article {
-  // border: none !important;
-}
-
 h3.album-header-info {
   font-size: .9em;
-
   margin: .2em;
   margin-top: 1em;
 }
 
 h4.album-header-info {
   font-size: .75em;
-
   margin: .2em;
 }

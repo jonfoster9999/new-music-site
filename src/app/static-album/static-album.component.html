@@ -1,0 +1,5 @@
+<div id="new-notable-container">
+  <h3 *ngIf="context == 'new_notable'">New and Notable</h3>
+  <h3 *ngIf="context == 'favorites'">Favorites: {{ authService.currentUser.email }}</h3>
+<iframe id="album-player" [src]="url | safe"></iframe>
+</div>

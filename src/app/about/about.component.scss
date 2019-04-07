@@ -1,12 +1,10 @@
 :host {
   background: rgba(72, 116, 172, .8);
-
 }
 
 .press-clipping {
   display: block;
   width: 90%;
-
   box-shadow: 10px 10px 10px black;
   margin: 4vh auto;
   padding: 40px 60px;
@@ -16,6 +14,7 @@
     rgba(40,40,40, .7),
     rgba(40,40,40, .7)),
   url('https://assets.saatchiart.com/saatchi/751929/art/2481137/1551138-7.jpg');
+  background-size: cover;
   color: #fef;
   box-sizing: border-box;
   transition: .3s ease-in-out;
@@ -56,8 +55,6 @@
   url('http://bgfons.com/uploads/newspaper/newspaper_texture2847.jpg');
 }
 
-
-
 .quote {
   text-align: center;
   color: #ddd;
@@ -81,12 +78,8 @@ a {
   color: gold;
 }
 
-/*@media only screen and (max-width: 600px) {*/
-  /*.press-clipping {*/
-    /*width: 100%;*/
-  /*}*/
-/*}*/
-
-/*a {*/
-  /*color: white;*/
-/*}*/
+.about-image {
+  width: 100%;
+  border-radius: 2%;
+  margin-top: 5%;
+}

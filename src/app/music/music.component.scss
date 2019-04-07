@@ -1,0 +1,36 @@
+.title {
+  font-size: .8em;
+  margin-top: 30px;
+  color: white;
+  text-align: center;
+  text-transform: none;
+}
+
+.selected {
+  border-bottom: none;
+  border-bottom: .7vh solid rgb(240,40,40);
+}
+
+.title:hover {
+  cursor: pointer;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+
+.music-selector {
+  margin-top: 0px;
+  background: black;
+  height: 29px;
+}
+
+.title {
+  margin-top: 0px;
+}
+.controls {
+  padding-top: 7px;
+}

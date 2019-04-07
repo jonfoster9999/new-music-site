@@ -1,11 +1,11 @@
 import { AuthService } from './../auth.service';
-import {AfterViewChecked, Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import { AfterViewChecked, Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-music',
   templateUrl: './music.component.html',
-  styleUrls: ['./music.component.css']
+  styleUrls: ['./music.component.scss']
 })
 export class MusicComponent implements OnInit, AfterViewChecked {
   fragment;
