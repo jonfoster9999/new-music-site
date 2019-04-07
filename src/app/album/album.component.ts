@@ -60,9 +60,10 @@ export class AlbumComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.visibilityTimeout = window.setTimeout(() => this.isVisible = true);
     const currentAlbum = this.activatedRoute.snapshot.params.albumId;
+    const link_title = this.activatedRoute.snapshot.queryParams.link_title;
     if (currentAlbum.indexOf('private_link') > - 1) {
       this.currentAlbum = {
-        title: 'Private Link',
+        title: link_title ? `Private Link: ${link_title}` : 'Private Link',
         artist: 'Never Ending Tape',
         path: currentAlbum
       }
@@ -101,11 +102,7 @@ export class AlbumComponent implements OnInit, OnDestroy {
   }
 
   getUID() {
-    if (this.authService.currentUser) {
-      return this.authService.currentUser.uid
-    } else {
-      return '';
-    }
+    return this.authService.currentUser ? this.authService.currentUser.uid : '';
   }
 
   onCancelClick() {
@@ -118,7 +115,7 @@ export class AlbumComponent implements OnInit, OnDestroy {
   }
 
   navigateBackToList() {
-    if (this.activatedRoute.snapshot.outlet == 'compilation') {
+    if (this.activatedRoute.snapshot.outlet == 'net_compilation') {
       this.router.navigate(['music', 'compilations']);
     } else {
       this.router.navigate(['music', 'albums']);

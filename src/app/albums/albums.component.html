@@ -29,7 +29,7 @@
   Note: You are viewing a filtered list. Add or remove filters above.
 </div>
 
-<input id="dumb">
+<input id="helper-placeholder">
 <!-- <button (click)="toggleShowDiv('divA')">TOGGLE DIV</button> -->
 <main *ngIf="!loadingAlbums && visibleAlbums.length > 0" class="grid">
   <article *ngFor="let album of visibleAlbums" class="album-article">
@@ -54,8 +54,12 @@
   No albums match this criteria
 </div>
 
+<router-outlet *ngIf="context == 'net_album'" name="net_album"
+  (activate)="albumPopupActivated($event)"
+  (deactivate)="albumPopupDeactivated()">
+</router-outlet>
 
-<router-outlet name="album"
+<router-outlet *ngIf="context == 'net_compilation'" name="net_compilation"
   (activate)="albumPopupActivated($event)"
   (deactivate)="albumPopupDeactivated()">
 </router-outlet>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 import { AlbumsService } from '../albums.service';
 import { AlbumComponent } from '../album/album.component';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -48,9 +48,10 @@ import { trigger, state, style, transition,
   ],
   encapsulation: ViewEncapsulation.None
 })
-export class AlbumsComponent implements OnInit {
+export class AlbumsComponent implements OnInit, AfterViewChecked {
   @ViewChild('el') el: any;
   loadingAlbums = true;
+  context;
   albums;
   showBackgroundOverlay;
   tags;
@@ -60,6 +61,7 @@ export class AlbumsComponent implements OnInit {
   animationState = 'in';
   selectedFilters = null;
   fragment;
+
   constructor(
     private albumsService: AlbumsService,
     private router: Router,
@@ -68,13 +70,15 @@ export class AlbumsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.context = this.activatedRoute.snapshot.data.context;
     this.activatedRoute.fragment.subscribe(fragment => { this.fragment = fragment; });
 
     if (this.activatedRoute.snapshot.queryParams.selectedFilters) {
       this.selectedFilters = this.activatedRoute.snapshot.queryParams.selectedFilters.split(",")
     }
     if (this.albumsService.albums && this.albumsService.tags) {
-      this.albums = this.albumsService.albums.filter(album => album['release_type'] == 'net_album');
+
+      this.albums = this.albumsService.albums.filter(album => album['release_type'] == this.context);
 
       const allTags = [].concat.apply([], this.albums.map(album => album.tags))
 
@@ -84,7 +88,7 @@ export class AlbumsComponent implements OnInit {
 
       this.tagNames = Object.values(this.tags);
 
-      this.albums.forEach((album, i) => {
+      this.albums.forEach(album => {
         album.tags = album.tags.map(tag => this.decodeTag(tag))
       })
 
@@ -98,7 +102,7 @@ export class AlbumsComponent implements OnInit {
     this.albumsService.getAlbums()
       .subscribe(payload => {
         const untouchedAlbums = payload['albums']
-        this.albums = payload['albums'].filter(album => album['release_type'] == 'net_album');
+        this.albums = payload['albums'].filter(album => album['release_type'] == this.context);
 
         const allTags = [].concat.apply([], this.albums.map(album => album.tags))
         this.albumsService.tags = payload['tags'];
@@ -128,42 +132,35 @@ export class AlbumsComponent implements OnInit {
 
   listen(album) {
     this.albumsService.currentAlbum = album
-    this.router.navigate([{ outlets: { album: [album.title]  } }], { relativeTo: this.activatedRoute });
+    this.router.navigate([{ outlets: { [this.context]: [album.title]  } }], { relativeTo: this.activatedRoute });
   }
 
   albumPopupActivated(componentRef: AlbumComponent) {
     document.body.style.overflowY = 'hidden';
     this.showBackgroundOverlay = true;
   }
+
   albumPopupDeactivated() {
     document.body.style.overflowY = 'visible';
     this.showBackgroundOverlay = false;
   }
 
   decodeTag(i) {
-    if (+i === i) {
-      return this.tags[String(i)];
-    } else {
-      return i;
-    }
-  }
-
-  seeChange() {
+    return (+i === i) ? this.tags[String(i)] : i;
   }
 
   filterByTags(el) {
-
     el.focused = false;
     if (this.selectedTags.length > 0) {
       this.visibleAlbums = this.albums.filter(album => album.tags.some(t=> this.selectedTags.indexOf(t) >= 0))
     } else {
       this.visibleAlbums = this.albums;
     }
-    document.getElementById('dumb').focus()
+    document.getElementById('helper-placeholder').focus()
   }
 
   clearSelections() {
-    document.getElementById('dumb').focus()
+    document.getElementById('helper-placeholder').focus()
   }
 
   filterObject(obj, predicate) {
@@ -189,7 +186,6 @@ export class AlbumsComponent implements OnInit {
   ngAfterViewChecked(): void {
     try {
       if(this.fragment === 'top') {
-        console.log('did this fire?')
         window.scrollTo(0, 0);
       }
     } catch (e) { }

@@ -35,3 +35,5 @@ TODO:
   - factor out albums/compilations to one view?
   - toast notification when adding a favorite
   - vertically center player
+
+  - update valdation of album ingest to handle net_compilation vs net_album

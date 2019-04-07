@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
     const userKey = Object.keys(window.localStorage)
       .filter(it => it.startsWith('firebase:authUser'))[0];
     const user = userKey ? JSON.parse(localStorage.getItem(userKey)) : undefined;
+
     if (user) {
       this.authService.currentUser = user;
       this.authService.token = this.authService.currentUser.stsTokenManager.accessToken;
@@ -73,44 +74,48 @@ export class AppComponent implements OnInit {
   }
 
   dbAddCallback(uid, msg, snapshot) {
-    let songs_array = []
-    if (snapshot.val() && snapshot.val().songs) {
-      songs_array = snapshot.val().songs
-    }
+    if (msg && msg.data && msg.data.song) {
+      let songs_array = []
+      if (snapshot.val() && snapshot.val().songs) {
+        songs_array = snapshot.val().songs
+      }
 
-    songs_array.push(msg.data.song)
-    this.database.ref('favorites/' + uid).set({
-      title: "Favorites",
-      artist: this.authService.currentUser.email,
-      description: `A collection of favorites for ${this.authService.currentUser.email}`,
-      songs: songs_array,
-      tags: []
-    })
+      songs_array.push(msg.data.song)
+      this.database.ref('favorites/' + uid).set({
+        title: "Favorites",
+        artist: this.authService.currentUser.email,
+        description: `A collection of favorites for ${this.authService.currentUser.email}`,
+        songs: songs_array,
+        tags: []
+      })
+    }
   }
 
   dbRemoveCallback(uid, msg, snapshot) {
-    let songs_array = []
-    if (snapshot.val() && snapshot.val().songs) {
-      songs_array = snapshot.val().songs
+    if (msg && msg.data && msg.data.song) {
+      let songs_array = []
+      if (snapshot.val() && snapshot.val().songs) {
+        songs_array = snapshot.val().songs
+      }
+
+      let idToBeRemoved = msg.data.song.id;
+
+      let songToBeRemoved = songs_array.find(function(song) {
+        return (song.id == idToBeRemoved);
+      })
+
+      let index = songs_array.indexOf(songToBeRemoved);
+
+      songs_array.splice(index, 1);
+
+      this.database.ref('favorites/' + uid).set({
+        title: "Favorites",
+        artist: this.authService.currentUser.email,
+        description: `A collection of favorites for ${this.authService.currentUser.email}`,
+        songs: songs_array,
+        tags: []
+      })
     }
-
-    let idToBeRemoved = msg.data.song.id;
-
-    let songToBeRemoved = songs_array.find(function(song) {
-      return (song.id == idToBeRemoved);
-    })
-
-    let index = songs_array.indexOf(songToBeRemoved);
-
-    songs_array.splice(index, 1);
-
-    this.database.ref('favorites/' + uid).set({
-      title: "Favorites",
-      artist: this.authService.currentUser.email,
-      description: `A collection of favorites for ${this.authService.currentUser.email}`,
-      songs: songs_array,
-      tags: []
-    })
   }
 
   logout() {

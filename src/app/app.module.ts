@@ -26,7 +26,6 @@ import { AuthService } from './auth.service';
 import { MaterialModule } from './material.module';
 import { SafePipe } from './safe.pipe';
 import { FavoritesComponent } from './favorites/favorites.component';
-import { CompilationsComponent } from './compilations/compilations.component';
 
 @NgModule({
   declarations: [
@@ -45,8 +44,7 @@ import { CompilationsComponent } from './compilations/compilations.component';
     AuthComponent,
     SignupComponent,
     SafePipe,
-    FavoritesComponent,
-    CompilationsComponent
+    FavoritesComponent
   ],
   imports: [
     MaterialModule,
@@ -64,11 +62,11 @@ import { CompilationsComponent } from './compilations/compilations.component';
         {path: 'new-notable', component: NewNotableComponent},
         {path: 'favorites', component: FavoritesComponent },
         {path: 'advertising', component: PlayerComponent, data: { data: 'advertising'}},
-        {path: 'compilations', component: CompilationsComponent, children: [
-          { path: ':albumId', component: AlbumComponent, outlet: 'compilation' }
+        {path: 'compilations', component: AlbumsComponent, data: { context: 'net_compilation' }, children: [
+          { path: ':albumId', component: AlbumComponent, outlet: 'net_compilation' }
         ] },
-        {path: 'albums', component: AlbumsComponent, children: [
-            { path: ':albumId', component: AlbumComponent, outlet: 'album' }
+        {path: 'albums', component: AlbumsComponent, data: { context: 'net_album' }, children: [
+            { path: ':albumId', component: AlbumComponent, outlet: 'net_album' }
           ]
         }
     ] },
