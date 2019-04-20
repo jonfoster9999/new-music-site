@@ -7,6 +7,7 @@ import {Subject} from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
+  static show = false;
   token: string;
   app;
   currentUser = null;

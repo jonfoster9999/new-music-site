@@ -15,6 +15,16 @@
   }
 }
 
+.influence {
+  color: rgb(109, 22, 22);
+  // text-transform: none;
+}
+
+.sounds-like {
+  font-family: "proxima-nova",sans-serif !important;
+
+  font-size: .4em;
+}
 .grid {
   padding: 20px;
   display: grid;
@@ -34,13 +44,7 @@
 .text {
   padding: 0 20px 20px;
 }
-.text > button {
-  background-color: rgba(51,44,44, .8);
-  border: 0;
-  color: white;
-  padding: 10px;
-  width: 86%;
-}
+
 
 .tag {
   background-color: lightgray;
@@ -63,10 +67,21 @@
 }
 
 .listen-button {
-  position: absolute;
-  bottom: 8px;
+  border: 0;
+  color: white;
+  // position: absolute;
+  // bottom: 8px;
   left: 15px;
+  padding: 10px;
+  width: 100%;
   background-color: rgba(51,44,44, .8);
+}
+
+.button-container {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 10px;
 }
 
 .album-description {
@@ -191,9 +206,11 @@ h3.album-header-info {
   font-size: .9em;
   margin: .2em;
   margin-top: 1em;
+  margin-left: 0;
 }
 
 h4.album-header-info {
   font-size: .75em;
   margin: .2em;
+  margin-left: 0;
 }

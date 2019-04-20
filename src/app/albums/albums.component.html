@@ -35,14 +35,24 @@
         <h3 class="album-header-info">{{ album.title }}</h3>
           <h4 class="album-header-info">{{ album.artist }}<span></span></h4>
         <p class="album-description">{{ album.description }}<span></span></p>
-
+        <ng-template [ngIf]="album.sounds_like">
+          <p class="sounds-like">
+            Sounds like: 
+            <span class="influence" *ngFor="let influence of album.sounds_like; let i = index;">
+              {{ influence }}<ng-template [ngIf]="i != (album.sounds_like.length - 1)">,</ng-template>
+            </span>
+          </p>
+        </ng-template>
+        
           <span (click)="tagWasClicked(el)" *ngFor="let tag of album.tags" class="tag">
             {{ tag }}
           </span>
 
         <p></p>
         <br>
-        <button (click)="listen(album)" class="listen-button">Listen Now</button>
+        <div class="button-container">
+          <button (click)="listen(album)" class="listen-button">Listen Now</button>
+        </div>
       </div>
     </article>
   </main>

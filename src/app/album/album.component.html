@@ -6,8 +6,8 @@
   LOADING ALBUMS...
 </div>
 <div id="static" *ngIf="!loadingAlbum">
-  <h1>{{ currentAlbum.title }}</h1>
-  <h4>{{ currentAlbum.artist }}</h4>
+  <h1 class="header-album-title">{{ currentAlbum.title }}</h1>
+  <h4 class="header-album-artist">{{ currentAlbum.artist }}</h4>
 </div>
 <div id="parent" *ngIf="!loadingAlbum">
   <div class="iframe">

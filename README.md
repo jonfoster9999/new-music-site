@@ -32,6 +32,5 @@ append ?auth=token if we want to use firebase
 
 
 TODO:
-  - vertically center player
-
   - update valdation of album ingest to handle net_compilation vs net_album
+  - check spacing on compilation view between footer etc

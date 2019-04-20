@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { RouterModule} from '@angular/router';
 import { AppComponent } from './app.component';
 import { MusicComponent } from './music/music.component';
+import { PressComponent } from './press/press.component';
 import { VideosComponent } from './videos/videos.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
@@ -24,6 +25,16 @@ import { MaterialModule } from './material.module';
 import { SafePipe } from './safe.pipe';
 import { ToastrModule } from 'ng6-toastr-notifications';
 
+export function onAppInit(config) {
+  return function() {
+
+    // const password = window.prompt('Enter the password...');
+    // if (password != 'net123') {
+    //   window.location.href = "https://www.google.com";
+    // }
+  };
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +48,8 @@ import { ToastrModule } from 'ng6-toastr-notifications';
     StaticAlbumComponent,
     AuthComponent,
     SignupComponent,
-    SafePipe
+    SafePipe,
+    PressComponent
   ],
   imports: [
     MaterialModule,
@@ -73,7 +85,13 @@ import { ToastrModule } from 'ng6-toastr-notifications';
   ],
   providers: [
     AlbumsService,
-    AuthService
+    AuthService,
+    {
+     provide: APP_INITIALIZER,
+     useFactory: onAppInit,
+     multi: true,
+     deps: [/* your dependencies */]
+   }
   ],
   bootstrap: [AppComponent]
 })
