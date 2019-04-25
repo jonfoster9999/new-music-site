@@ -28,7 +28,7 @@ import { ToastrModule } from 'ng6-toastr-notifications';
 export function onAppInit(config) {
   return function() {
 
-    const password = window.prompt('Enter your password...');
+    const password = window.prompt('Enter your password please...');
     if (password != 'net123') {
       window.location.href = "https://www.google.com";
     }
