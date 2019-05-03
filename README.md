@@ -29,8 +29,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 append ?auth=token if we want to use firebase
 
-
-
 TODO:
   - update valdation of album ingest to handle net_compilation vs net_album
   - check spacing on compilation view between footer etc
