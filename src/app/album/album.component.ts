@@ -5,6 +5,7 @@ import { AlbumsService } from '../albums.service';
 import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
 import {AuthService } from '../auth.service';
 import * as firebase from 'firebase';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-album',
@@ -68,13 +69,13 @@ export class AlbumComponent implements OnInit, OnDestroy {
         path: currentAlbum
       }
       this.tags = []
-      this.url = 'https://d1e06abilcmk8l.cloudfront.net/?albumPath=' + currentAlbum + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
+      this.url = `${environment['album_player_host']}?albumPath=` + currentAlbum + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
       this.loadingAlbum = false;
     } else {
       if (this.albumsService.albums && this.albumsService.tags) {
-        this.currentAlbum = this.albumsService.albums.find(album => album.title === currentAlbum);
+        this.currentAlbum = this.albumsService.albums.find(album => (album.title === currentAlbum || album.path === currentAlbum));
         this.tags = this.albumsService.tags;
-        this.url = 'https://d1e06abilcmk8l.cloudfront.net/?albumPath=' + this.currentAlbum.path.replace('/', '') + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
+        this.url = `${environment['album_player_host']}?albumPath=` + this.currentAlbum.path.replace('/', '') + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
         this.loadingAlbum = false;
       } else {
         this.albumsService.getAlbums().subscribe(payload => {
@@ -83,11 +84,13 @@ export class AlbumComponent implements OnInit, OnDestroy {
           this.albumsService.tags = payload['tags'];
 
           this.albums.forEach(album => {
-            album.tags = album.tags.map(tag => this.decodeTag(tag))
+            // album.tags = album.tags.map(tag => this.decodeTag(tag))
           })
           this.albumsService.albums = this.albums;
-          this.currentAlbum = this.albumsService.albums.find(album => album.title == currentAlbum);
-          this.url = 'https://d1e06abilcmk8l.cloudfront.net/?albumPath=' + this.currentAlbum.path.replace('/', '') + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
+          this.currentAlbum = this.albumsService.albums.find(album => (album.title == currentAlbum || album.path == currentAlbum));
+
+
+          this.url = `${environment['album_player_host']}?albumPath=` + this.currentAlbum.path.replace('/', '') + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
           this.loadingAlbum = false;
         })
       }
@@ -96,7 +99,7 @@ export class AlbumComponent implements OnInit, OnDestroy {
 
     this.authService.authChange.subscribe(
       () => {
-        this.url = 'https://d1e06abilcmk8l.cloudfront.net/?albumPath=' + this.currentAlbum.path.replace('/', '') + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
+        this.url = `${environment['album_player_host']}?albumPath=` + this.currentAlbum.path.replace('/', '') + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
       }
     );
   }

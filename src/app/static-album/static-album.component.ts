@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import * as firebase from 'firebase';
 import { AuthService } from '../auth.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-static-album',
@@ -21,10 +22,10 @@ export class StaticAlbumComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.context = this.activatedRoute.snapshot.data.context;
     console.log('context is', this.context)
-    this.url = 'https://d1e06abilcmk8l.cloudfront.net/?albumPath=' + this.context + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
+    this.url = `${environment['album_player_host']}?albumPath=` + this.context + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
     this.authService.authChange.subscribe(
       () => {
-        this.url = 'https://d1e06abilcmk8l.cloudfront.net/?albumPath=' + this.context + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
+        this.url = `${environment['album_player_host']}?albumPath=` + this.context + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
       }
     );
   }

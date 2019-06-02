@@ -132,7 +132,7 @@ export class AlbumsComponent implements OnInit, AfterViewChecked {
 
   listen(album) {
     this.albumsService.currentAlbum = album
-    this.router.navigate([{ outlets: { [this.context]: [album.title]  } }], { relativeTo: this.activatedRoute });
+    this.router.navigate([{ outlets: { [this.context]: [album.path]  } }], { relativeTo: this.activatedRoute });
   }
 
   albumPopupActivated(componentRef: AlbumComponent) {
