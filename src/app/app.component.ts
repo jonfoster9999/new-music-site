@@ -49,15 +49,19 @@ export class AppComponent implements OnInit {
         this.router.navigate([{outlets: {auth: 'login'}}])
       } else if (msg.data.type == 'download'){
         try {
+          let user;
           if (this.authService.currentUser) {
-            const song = msg.data.msg.split('/').pop().split('+').join(' ');
-
-            this.database.ref('downloads/' + ('_' + Math.random().toString(36).substr(2, 9))).set({
-              email: this.authService.currentUser.email,
-              song: song,
-              time: String(new Date())
-            });
+            user = this.authService.currentUser.email;
+          } else {
+            user = 'guest'
           }
+          const song = msg.data.msg.split('/').pop().split('+').join(' ');
+
+          this.database.ref('downloads/' + ('_' + Math.random().toString(36).substr(2, 9))).set({
+            email: user,
+            song: song,
+            time: String(new Date())
+          });
         }
         catch(err) {
           console.warn(err);
