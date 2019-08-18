@@ -23,6 +23,10 @@ export class AuthService {
     return firebase.auth().signInWithEmailAndPassword(email, password);
   }
 
+  forgotPassword(email: string) {
+    return firebase.auth().sendPasswordResetEmail(email)
+  }
+
   getToken() {
     firebase.auth().currentUser.getIdToken()
       .then(token => {

@@ -17,8 +17,12 @@ export class AuthComponent implements OnInit {
   ngOnInit() {
   }
 
-  nav() {
+  goToSignup() {
     this.router.navigate([{ outlets: { auth: 'signup' } }]);
+  }
+
+  goToForgotPassword() {
+    this.router.navigate([{ outlets: { auth: 'forgot-password' } }]);
   }
 
   close() {

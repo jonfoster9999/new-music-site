@@ -17,7 +17,8 @@
             {{ error }}
           </p>
           <div class="button">
-            <a (click)="nav()" class="change-card">Need an account?</a><br>
+            <a (click)="goToSignup()" class="change-card">Need an account?</a><br>
+            <a (click)="goToForgotPassword()" class="change-card" style="margin-top: -10px;">Forgot password?</a><br>
             <button (click)="close()" mat-button>Cancel</button>
             <button type="submit" mat-button>Login</button>
           </div>

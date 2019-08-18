@@ -17,11 +17,13 @@
           </p>
 
           <p *ngIf="error" class="error">
-          {{ error }}
+            {{ error }}
           </p>
 
           <div class="button">
-            <a (click)="nav()" class="change-card">Have an account?</a><br>
+            <a (click)="goToLogin()" class="change-card">Have an account?</a><br>
+            <a (click)="goToForgotPassword()" style="margin-top: -10px;" class="change-card">Forgot password?</a><br>
+
             <button (click)="close()" mat-button>Cancel</button>
             <button type="submit" mat-button>Signup</button>
           </div>

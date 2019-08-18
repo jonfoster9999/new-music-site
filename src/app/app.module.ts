@@ -24,6 +24,7 @@ import { AuthService } from './auth.service';
 import { MaterialModule } from './material.module';
 import { SafePipe } from './safe.pipe';
 import { ToastrModule } from 'ng6-toastr-notifications';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 export function onAppInit(config) {
   return function() {
@@ -48,7 +49,8 @@ export function onAppInit(config) {
     AuthComponent,
     SignupComponent,
     SafePipe,
-    PressComponent
+    PressComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     MaterialModule,
@@ -76,6 +78,7 @@ export function onAppInit(config) {
       { path: 'videos', component: VideosComponent },
       { path: 'login', component: AuthComponent, outlet: 'auth'},
       { path: 'signup', component: SignupComponent, outlet: 'auth'},
+      { path: 'forgot-password', component: ForgotPasswordComponent, outlet: 'auth'},
       { path: 'about', component: AboutComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'work', component: WorkComponent},
