@@ -69,13 +69,13 @@ export class AlbumComponent implements OnInit, OnDestroy {
         path: currentAlbum
       }
       this.tags = []
-      this.url = `${environment['album_player_host']}?albumPath=` + currentAlbum + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
+      this.url = `${environment['album_player_host']}?albumPath=` + currentAlbum + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID() + '&username=' + this.getUsername();
       this.loadingAlbum = false;
     } else {
       if (this.albumsService.albums && this.albumsService.tags) {
         this.currentAlbum = this.albumsService.albums.find(album => (album.title === currentAlbum || album.path === currentAlbum));
         this.tags = this.albumsService.tags;
-        this.url = `${environment['album_player_host']}?albumPath=` + this.currentAlbum.path.replace('/', '') + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
+        this.url = `${environment['album_player_host']}?albumPath=` + this.currentAlbum.path.replace('/', '') + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID() + '&username=' + this.getUsername();
         this.loadingAlbum = false;
       } else {
         this.albumsService.getAlbums().subscribe(payload => {
@@ -90,7 +90,7 @@ export class AlbumComponent implements OnInit, OnDestroy {
           this.currentAlbum = this.albumsService.albums.find(album => (album.title == currentAlbum || album.path == currentAlbum));
 
 
-          this.url = `${environment['album_player_host']}?albumPath=` + this.currentAlbum.path.replace('/', '') + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
+          this.url = `${environment['album_player_host']}?albumPath=` + this.currentAlbum.path.replace('/', '') + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID() + '&username=' + this.getUsername();
           this.loadingAlbum = false;
         })
       }
@@ -99,13 +99,17 @@ export class AlbumComponent implements OnInit, OnDestroy {
 
     this.authService.authChange.subscribe(
       () => {
-        this.url = `${environment['album_player_host']}?albumPath=` + this.currentAlbum.path.replace('/', '') + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
+        this.url = `${environment['album_player_host']}?albumPath=` + this.currentAlbum.path.replace('/', '') + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID() + '&username=' + this.getUsername();
       }
     );
   }
 
   getUID() {
     return this.authService.currentUser ? this.authService.currentUser.uid : '';
+  }
+
+  getUsername() {
+    return this.authService.currentUser ? this.authService.currentUser.email : '';
   }
 
   onCancelClick() {

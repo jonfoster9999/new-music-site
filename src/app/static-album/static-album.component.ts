@@ -22,10 +22,10 @@ export class StaticAlbumComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.context = this.activatedRoute.snapshot.data.context;
     console.log('context is', this.context)
-    this.url = `${environment['album_player_host']}?albumPath=` + this.context + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
+    this.url = `${environment['album_player_host']}?albumPath=` + this.context + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID() + '&username=' + this.getUsername();
     this.authService.authChange.subscribe(
       () => {
-        this.url = `${environment['album_player_host']}?albumPath=` + this.context + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID();
+        this.url = `${environment['album_player_host']}?albumPath=` + this.context + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID() + '&username=' + this.getUsername();
       }
     );
   }
@@ -36,6 +36,10 @@ export class StaticAlbumComponent implements OnInit, OnDestroy {
     } else {
       return '';
     }
+  }
+
+  getUsername() {
+    return this.authService.currentUser ? this.authService.currentUser.email : '';
   }
 
   ngOnDestroy() {
