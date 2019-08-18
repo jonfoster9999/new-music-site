@@ -11,7 +11,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
   styleUrls: ['./forgot-password.component.css']
 })
 export class ForgotPasswordComponent implements OnInit {
-
+  error = undefined;
   constructor(private route: ActivatedRoute, 
               private router: Router, 
               private authService: AuthService,
