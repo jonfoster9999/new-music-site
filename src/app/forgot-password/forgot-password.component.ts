@@ -36,7 +36,7 @@ export class ForgotPasswordComponent implements OnInit {
   onForgotPassword(form: NgForm) {
     const email = form.value.email;
     this.authService.forgotPassword(email);
-    this.toastr.successToastr('password reset sent')
+    this.toastr.successToastr('password reset sent to ' + email)
     this.close();
   }
 
