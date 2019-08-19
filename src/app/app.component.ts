@@ -1,5 +1,5 @@
 import { AfterViewChecked, Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import * as firebase from 'firebase';
 import { AuthService } from './auth.service';
 import { ToastrManager } from 'ng6-toastr-notifications';
@@ -14,8 +14,11 @@ export class AppComponent implements OnInit {
   title = 'app';
   app;
   database;
+  alreadySent = false;
 
-  constructor(public authService: AuthService, private router: Router, public toastr: ToastrManager) {}
+  constructor(public authService: AuthService, private router: Router, public toastr: ToastrManager, private route: ActivatedRoute) {
+
+  }
 
   ngOnInit() {
     this.app = firebase.initializeApp({
@@ -26,6 +29,7 @@ export class AppComponent implements OnInit {
       storageBucket: 'never-ending-tape.appspot.com',
       messagingSenderId: '288317421345'
     });
+
     const userKey = Object.keys(window.localStorage)
       .filter(it => it.startsWith('firebase:authUser'))[0];
     const user = userKey ? JSON.parse(localStorage.getItem(userKey)) : undefined;
@@ -41,6 +45,24 @@ export class AppComponent implements OnInit {
       (<any>window).attachEvent('onmessage', this.receiveMessage.bind(this));
     }
     this.database = firebase.database();
+    this.route.queryParams.subscribe(params => {
+      if (params['contact']) {
+        if (!this.alreadySent) {
+          let contact = params['contact']
+          this.authService.linkMember = contact;
+          this.database.ref('link_clicks/' + ('_' + Math.random().toString(36).substr(2, 9))).set({
+            email: contact
+          })
+          this.alreadySent = true;
+          this.router.navigate([], {
+            queryParams: {
+              contact: null,
+            },
+            queryParamsHandling: 'merge'
+          })
+        }
+      }
+    });
   }
 
   receiveMessage(msg) {

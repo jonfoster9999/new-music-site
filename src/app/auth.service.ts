@@ -11,6 +11,7 @@ export class AuthService {
   token: string;
   app;
   currentUser = null;
+  linkMember = null;
   authChange = new Subject();
 
   constructor(private router: Router, private route: ActivatedRoute) {}
