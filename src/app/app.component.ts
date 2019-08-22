@@ -79,6 +79,8 @@ export class AppComponent implements OnInit {
           let user;
           if (this.authService.currentUser) {
             user = this.authService.currentUser.email;
+          } else if (this.authService.linkMember) {
+            user = this.authService.linkMember + " (link member)"
           } else {
             user = 'guest'
           }
