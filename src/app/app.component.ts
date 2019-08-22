@@ -50,8 +50,13 @@ export class AppComponent implements OnInit {
         if (!this.alreadySent) {
           let contact = params['contact']
           this.authService.linkMember = contact;
+          var date = new Date();
+          var now_utc =  Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(),
+               date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
+          var dateString = new Date(now_utc).toISOString();
           this.database.ref('link_clicks/' + ('_' + Math.random().toString(36).substr(2, 9))).set({
-            email: contact
+            email: contact,
+            date: dateString
           })
           this.alreadySent = true;
           this.router.navigate([], {
