@@ -21,7 +21,6 @@ export class StaticAlbumComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.context = this.activatedRoute.snapshot.data.context;
-    console.log('context is', this.context)
     this.url = `${environment['album_player_host']}?albumPath=` + this.context + '&token=' + (this.authService.token || '') + '&userId=' + this.getUID() + '&username=' + this.getUsername() + '&link_member=' + this.authService.linkMember;
     this.authService.authChange.subscribe(
       () => {

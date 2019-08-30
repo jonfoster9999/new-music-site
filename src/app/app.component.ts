@@ -45,6 +45,7 @@ export class AppComponent implements OnInit {
       (<any>window).attachEvent('onmessage', this.receiveMessage.bind(this));
     }
     this.database = firebase.database();
+    this.authService.databaseRef = this.database;
     this.route.queryParams.subscribe(params => {
       if (params['contact']) {
         if (!this.alreadySent) {

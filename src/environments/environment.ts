@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   rails_api_host: 'http://localhost:3000',
-  album_player_host: 'http://127.0.0.1:5000/examples/blue-playlist/'
+  album_player_host: 'http://127.0.0.1:5000/examples/blue-playlist/',
+  stripeKey: 'pk_test_ZLpMOAb7DCIHNSSwqlmdTKaZ00aiInQLSX'
 };
 
 /*

@@ -1,3 +1,4 @@
+import { PaymentModule } from './payments/payment/payment.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { RouterModule} from '@angular/router';
@@ -54,6 +55,7 @@ export function onAppInit(config) {
   ],
   imports: [
     MaterialModule,
+    PaymentModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,

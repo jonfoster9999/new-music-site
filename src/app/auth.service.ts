@@ -13,6 +13,7 @@ export class AuthService {
   currentUser = null;
   linkMember = null;
   authChange = new Subject();
+  databaseRef;
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
