@@ -1,4 +1,4 @@
-import { PaymentModule } from './payments/payment/payment.module';
+import { PaymentService } from './payment.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { RouterModule} from '@angular/router';
@@ -55,7 +55,6 @@ export function onAppInit(config) {
   ],
   imports: [
     MaterialModule,
-    PaymentModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
@@ -90,6 +89,7 @@ export function onAppInit(config) {
   providers: [
     AlbumsService,
     AuthService,
+    PaymentService,
     {
      provide: APP_INITIALIZER,
      useFactory: onAppInit,

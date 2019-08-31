@@ -1,9 +1,12 @@
-import { AfterViewChecked, Component, OnInit } from '@angular/core';
+import { PaymentService } from './payment.service';
+import { environment } from './../environments/environment.prod';
+import { AfterViewChecked, Component, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import * as firebase from 'firebase';
 import { AuthService } from './auth.service';
 import { ToastrManager } from 'ng6-toastr-notifications';
 
+declare var StripeCheckout: any;
 
 @Component({
   selector: 'app-root',
@@ -15,12 +18,32 @@ export class AppComponent implements OnInit {
   app;
   database;
   alreadySent = false;
+  handler;
 
-  constructor(public authService: AuthService, private router: Router, public toastr: ToastrManager, private route: ActivatedRoute) {
+  // fake payment amount
+  amount = 500
+  //
 
-  }
+  constructor(
+    private paymentSvc: PaymentService,
+    public authService: AuthService, 
+    private router: Router, 
+    public toastr: ToastrManager, 
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
+    
+    // payment stuff 
+    this.handler = StripeCheckout.configure({
+      key: environment.stripeKey,
+      locale: 'auto',
+      token: token => {
+        this.paymentSvc.proccessPayment(token, this.amount)
+      }
+    })
+    // 
+
     this.app = firebase.initializeApp({
       apiKey: 'AIzaSyDFFP50qmxme8g_ilMvz1FQlLxVWiRFuM4',
       authDomain: 'never-ending-tape.firebaseapp.com',
@@ -158,4 +181,22 @@ export class AppComponent implements OnInit {
   logout() {
     this.authService.logout();
   }
+
+
+
+  // payment stuff:
+  handlePayment() {
+    console.log('amount is', this.amount)
+    this.handler.open({
+      name: 'NeverEndingTape',
+      description: 'Pay',
+      amount: this.amount
+    })
+  }
+
+  @HostListener('window:popstate')
+    onpopstate() {
+      this.handler.close();
+    }
+  //
 }
