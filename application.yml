@@ -1,0 +1,7 @@
+  aws:
+    access_key: AKIAJ5ZPGBRMB52UPJKR
+    secret_key: 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
+    S3:
+      bucket    : videri
+      directories:
+        reports: ""
